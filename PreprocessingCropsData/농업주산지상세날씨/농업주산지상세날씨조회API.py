@@ -28,7 +28,7 @@ def DayStatistics_to_csv_byCrop(serviceKey, PA_CROP_SPE_ID, file_name):
                '연월일']
 
     # 데이터 요청 시작 (진행 상황 표시)
-    print("Start to get data, Crop Id :", PA_CROP_SPE_ID)
+    print("Start to get area_data, Crop Id :", PA_CROP_SPE_ID)
 
     df_for_storage = pd.DataFrame(columns=columns)
     df_for_storage.to_csv(file_name, index=False, encoding="utf-8-sig")
@@ -84,7 +84,7 @@ def DayStatistics_to_csv_byCrop(serviceKey, PA_CROP_SPE_ID, file_name):
             #     df_for_storage.to_csv(file_name, index=False, encoding="utf-8-sig")
 
             # resultMsg 가 NORMAL_SERVICE 인 경우 pageNo 출력 (진행 상황 표시)
-            # print("Get data in %s ... ( pageNo" % date, pageNo, ")")
+            # print("Get area_data in %s ... ( pageNo" % date, pageNo, ")")
 
             # root 는 header(응답 정보) 와 body(데이터)로 구성
             # root[1] 은 body, root[1][1] 은 items (rows 를 가짐)
@@ -135,7 +135,7 @@ def DayStatistics_to_csv_yearly(serviceKey, year, AREA_ID, PA_CROP_SPE_ID, file_
                '연월일']
 
     # 데이터 요청 시작 (진행 상황 표시)
-    print("Start to get data(DayStatistics) in", year)
+    print("Start to get area_data(DayStatistics) in", year)
 
     df_for_storage = pd.DataFrame(columns=columns)
     df_for_storage.to_csv(file_name, index=False, encoding="utf-8-sig")
@@ -173,7 +173,7 @@ def DayStatistics_to_csv_yearly(serviceKey, year, AREA_ID, PA_CROP_SPE_ID, file_
 
             # resultMsg 가 NO_DATA 일 경우 pageNo 출력 후 종료
             if resultMsg == "NO_DATA":
-                print("No data on pageNo", pageNo)
+                print("No area_data on pageNo", pageNo)
                 print("End")
                 break
 
@@ -189,7 +189,7 @@ def DayStatistics_to_csv_yearly(serviceKey, year, AREA_ID, PA_CROP_SPE_ID, file_
             #     df_for_storage.to_csv(file_name, index=False, encoding="utf-8-sig")
 
             # resultMsg 가 NORMAL_SERVICE 인 경우 pageNo 출력 (진행 상황 표시)
-            print("Get data ... ( pageNo", pageNo, ")")
+            print("Get area_data ... ( pageNo", pageNo, ")")
 
             # root 는 header(응답 정보) 와 body(데이터)로 구성
             # root[1] 은 body, root[1][1] 은 items (rows 를 가짐)
