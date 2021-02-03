@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 # return area, prod dataframe
 def preprocess(fruit_df: pd.DataFrame, crop: str) -> (pd.DataFrame, pd.DataFrame):
 
@@ -33,7 +34,7 @@ def preprocess(fruit_df: pd.DataFrame, crop: str) -> (pd.DataFrame, pd.DataFrame
 
 if __name__ == "__main__":
 
-    input_path = "../production_data/"
+    input_path = "../prod_area_data/"
     area_output_path = "../preprocessed_area_data/"
     prod_output_path = "../preprocessed_prod_data/"
 

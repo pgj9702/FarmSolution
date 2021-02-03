@@ -22,7 +22,7 @@ if __name__ == "__main__":
                     '2012 년', '2013 년', '2014 년', '2015 년', '2016 년', '2017 년',
                     '2018 년', '2019 년', '2020 년']
 
-    input_path = "../production_data/"
+    input_path = "../prod_area_data/"
     output_path = "../preprocessed_prod_data/"
 
     vegetable_input_files = ["채소생산량_과채류_2001_2019.csv", "채소생산량_근채류_2001_2020.csv",
@@ -44,6 +44,36 @@ if __name__ == "__main__":
 
     len_moo = [x for x in list(df.loc[0, :]) if "당근" in x]
     print(len(len_moo))
+
+    range_year = len(list(area_df[crop + "(성과수)"].columns))
+
+    col_list = ["시도별"] + [str(2020 - i) for i in range(range_year - 1, -1, -1)]
+
+    fruit_df.columns = list(fruit_df.iloc[0, :])
+
+    fruit_df = fruit_df.drop(index=0)
+
+    columns_List = pd.Series(fruit_df.columns)
+
+    area_col_idx = [0] + [i for i, v in columns_List.items() if crop in v]
+    prod_col_idx = [0] + [i + 2 for i in area_col_idx[1:]]
+
+    crop_area_df = fruit_df.iloc[:, [idx for idx in area_col_idx]]
+    crop_prod_df = fruit_df.iloc[:, [idx for idx in prod_col_idx]]
+
+    crop_area_df.columns = col_list
+    crop_prod_df.columns = col_list
+
+    # 결측값은 0 으로 설정
+    crop_area_df = crop_area_df.fillna(0)
+    crop_prod_df = crop_prod_df.fillna(0)
+
+    # "-" 를 0으로 설정
+    crop_area_df = crop_area_df.replace("-", 0)
+    crop_prod_df = crop_prod_df.replace("-", 0)
+
+
+
 
     # for crop, output_file in zip(vegetable_dict["근채류"], vegetable_output_file_list):
     #     crop_area_df = preprocess(df, crop)
