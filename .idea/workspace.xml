@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d06a757-ab0d-4067-8378-443708e364aa" name="Default Changelist" comment="" />
+    <list default="true" id="7d06a757-ab0d-4067-8378-443708e364aa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농작물생산조사/preprocessing_prod_data/vegetable.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농작물생산조사/preprocessing_prod_data/vegetable.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

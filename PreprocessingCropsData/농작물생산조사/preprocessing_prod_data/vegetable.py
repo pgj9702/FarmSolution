@@ -1,68 +1,23 @@
 import pandas as pd
 
 
-def preprocess(area_df: pd.DataFrame, crop: str) -> pd.DataFrame:
-    area_df = area_df[(area_df["항목"] == crop) & (area_df["종류별"] == "합계")]
+def preprocess(vegetable_df: pd.DataFrame, crop: str) -> pd.DataFrame:
+    col_name_list = ["시도별"] + [str(year) for year in range(2001, 2021)]
 
-    area_df = area_df.loc[:, columns_list]
+    vegetable_df.columns = list(vegetable_df.iloc[0, :])
 
-    # 결측값은 0 으로 설정
-    area_df = area_df.fillna(0)
+    vegetable_df = vegetable_df.drop(index=0)
 
-    # '2001 년' 형식의 col 명을 '2001' 로 수정
-    area_df.columns = [col.split(' ')[0] for col in area_df.columns]
+    columns_list = pd.Series(vegetable_df.columns)
 
-    return area_df
-
-
-if __name__ == "__main__":
-
-    columns_list = ['시도별', '2001 년', '2002 년', '2003 년', '2004 년', '2005 년',
-                    '2006 년', '2007 년', '2008 년', '2009 년', '2010 년', '2011 년',
-                    '2012 년', '2013 년', '2014 년', '2015 년', '2016 년', '2017 년',
-                    '2018 년', '2019 년', '2020 년']
-
-    input_path = "../prod_area_data/"
-    output_path = "../preprocessed_prod_data/"
-
-    vegetable_input_files = ["채소생산량_과채류_2001_2019.csv", "채소생산량_근채류_2001_2020.csv",
-                             "채소생산량_엽채류_2001_2020.csv", "채소생산량_조미채소_2001_2020.csv"]
-
-    vegetable_dict = {"과채류": [], "근채류": ["무_봄", "무_가을", "무_겨울", "무_고랭지", "당근", "대파"],
-                      "엽채류": ["배추_봄", "배추_가을", "배추_겨울", "배추_고랭지", "시금치", "양배추"],
-                      "조미채소": ["고추", "대파", "마늘", "생강", "양파", "쪽파"]}
-
-    vegetable_output_file_list = ["무_봄_면적.csv", "무_고랭지_면적.csv", "무_가을_면적.csv", "무_겨울_면적.csv",
-                                  "당근_-_면적.csv", "배추_봄_면적.csv", "배추_고랭지_면적.csv", "배추_가을_면적.csv",
-                                  "배추_겨울_면적.csv", "시금치_-_면적.csv", "양배추_-_면적.csv", "고추_-_면적.csv",
-                                  "마늘_-_면적.csv", "대파_-_면적.csv", "쪽파_-_면적.csv", "양파_-_면적.csv",
-                                  "생강_-_면적.csv"]
-
-    df = pd.read_csv(input_path + vegetable_input_files[1], encoding="euc-kr")
-
-    print(df.columns)
-
-    len_moo = [x for x in list(df.loc[0, :]) if "당근" in x]
-    print(len(len_moo))
-
-    range_year = len(list(area_df[crop + "(성과수)"].columns))
-
-    col_list = ["시도별"] + [str(2020 - i) for i in range(range_year - 1, -1, -1)]
-
-    fruit_df.columns = list(fruit_df.iloc[0, :])
-
-    fruit_df = fruit_df.drop(index=0)
-
-    columns_List = pd.Series(fruit_df.columns)
-
-    area_col_idx = [0] + [i for i, v in columns_List.items() if crop in v]
+    area_col_idx = [0] + [i for i, v in columns_list.items() if crop in v]
     prod_col_idx = [0] + [i + 2 for i in area_col_idx[1:]]
 
-    crop_area_df = fruit_df.iloc[:, [idx for idx in area_col_idx]]
-    crop_prod_df = fruit_df.iloc[:, [idx for idx in prod_col_idx]]
+    crop_area_df = vegetable_df.iloc[:, [idx for idx in area_col_idx]]
+    crop_prod_df = vegetable_df.iloc[:, [idx for idx in prod_col_idx]]
 
-    crop_area_df.columns = col_list
-    crop_prod_df.columns = col_list
+    crop_area_df.columns = col_name_list
+    crop_prod_df.columns = col_name_list
 
     # 결측값은 0 으로 설정
     crop_area_df = crop_area_df.fillna(0)
@@ -72,8 +27,82 @@ if __name__ == "__main__":
     crop_area_df = crop_area_df.replace("-", 0)
     crop_prod_df = crop_prod_df.replace("-", 0)
 
+    return crop_area_df, crop_prod_df
 
 
+if __name__ == "__main__":
+
+    input_path = "../area_prod_data/"
+    output_path = "../preprocessed_prod_data/"
+
+    vegetable_type = ["과채류", "근채류", "엽채류", "조미채소"]
+
+    vegetable_input_files = {"과채류": "채소생산량_과채류_2001_2019.csv",
+                             "근채류": "채소생산량_근채류_2001_2020.csv",
+                             "엽채류": "채소생산량_엽채류_2001_2020.csv",
+                             "조미채소": "채소생산량_조미채소_2001_2020.csv"}
+
+    vegetable_dict = {"과채류": [], "근채류": ["무_봄", "무_가을", "무_겨울", "무_고랭지", "당근"],
+                      "엽채류": ["배추_봄", "배추_가을", "배추_겨울", "배추_고랭지", "시금치", "양배추"],
+                      "조미채소": ["고추", "대파", "마늘", "생강", "양파", "쪽파"]}
+
+    vegetable_output_file_list = ["무_봄_면적.csv", "무_고랭지_면적.csv", "무_가을_면적.csv", "무_겨울_면적.csv",
+                                  "당근_-_면적.csv", "배추_봄_면적.csv", "배추_고랭지_면적.csv", "배추_가을_면적.csv",
+                                  "배추_겨울_면적.csv", "시금치_-_면적.csv", "양배추_-_면적.csv", "고추_-_면적.csv",
+                                  "마늘_-_면적.csv", "대파_-_면적.csv", "쪽파_-_면적.csv", "양파_-_면적.csv",
+                                  "생강_-_면적.csv"]
+
+
+    col_list = ["시도별"] + [str(year) for year in range(2001, 2021)]
+
+    for v_type in vegetable_type:
+        df = pd.read_csv(input_path + vegetable_input_files[v_type], encoding="euc-kr")
+
+        df.columns = list(df.iloc[0, :])
+
+        vegetable_df = df.drop(index=0)
+
+        columns_list = pd.Series(df.columns)
+
+        for vegetable in vegetable_dict[v_type]:
+
+            crop = vegetable.split("_")
+
+            # 품종이 있으면 분류 (품목, 품종)
+            if len(crop) == 2:
+                crop, kind = crop
+                area_col_idx = [0] + [i for i, v in columns_list.items() if crop in v if kind in v]
+
+            elif len(crop) == 1:
+                crop = crop[0]
+                area_col_idx = [0] + [i for i, v in columns_list.items() if crop in v]
+
+            prod_col_idx = [0] + [i + 2 for i in area_col_idx[1:]]
+
+            crop_area_df = vegetable_df.iloc[:, [idx for idx in area_col_idx]]
+            crop_prod_df = vegetable_df.iloc[:, [idx for idx in prod_col_idx]]
+
+            # 일반과 노지를 합산
+            asd = crop_area_df.columns[1:].str.split(":")
+
+            print(crop_area_df.columns[1:])
+
+
+    # crop_area_df.columns = col_list
+    # crop_prod_df.columns = col_list
+    #
+    # # np.prod([,], axis=0)
+    #
+    # # 결측값은 0 으로 설정
+    # crop_area_df = crop_area_df.fillna(0)
+    # crop_prod_df = crop_prod_df.fillna(0)
+    #
+    # # "-" 를 0으로 설정
+    # crop_area_df = crop_area_df.replace("-", 0)
+    # crop_prod_df = crop_prod_df.replace("-", 0)
+
+    # len_moo = [x for x in list(df.loc[0, :]) if "당근" in x]
+    # print(len(len_moo))
 
     # for crop, output_file in zip(vegetable_dict["근채류"], vegetable_output_file_list):
     #     crop_area_df = preprocess(df, crop)
