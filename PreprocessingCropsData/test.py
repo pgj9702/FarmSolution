@@ -1,3 +1,3 @@
-import datetime
+from numpy import nan as NA
 import pandas as pd
 
