@@ -56,13 +56,13 @@ if __name__ == "__main__":
     col_list = ["시도별"] + [str(year) for year in range(2001, 2021)]
 
     for v_type in vegetable_type:
-        df = pd.read_csv(input_path + vegetable_input_files[v_type], encoding="euc-kr")
+        vegetable_df = pd.read_csv(input_path + vegetable_input_files[v_type], encoding="euc-kr")
 
-        df.columns = list(df.iloc[0, :])
+        vegetable_df.columns = list(vegetable_df.iloc[0, :])
 
-        vegetable_df = df.drop(index=0)
+        vegetable_df = vegetable_df.drop(index=0)
 
-        columns_list = pd.Series(df.columns)
+        columns_list = pd.Series(vegetable_df.columns)
 
         for vegetable in vegetable_dict[v_type]:
 
@@ -71,21 +71,51 @@ if __name__ == "__main__":
             # 품종이 있으면 분류 (품목, 품종)
             if len(crop) == 2:
                 crop, kind = crop
-                area_col_idx = [0] + [i for i, v in columns_list.items() if crop in v if kind in v]
+                area_columns = [v for v in columns_list.values if crop in v if kind in v]
 
             elif len(crop) == 1:
                 crop = crop[0]
-                area_col_idx = [0] + [i for i, v in columns_list.items() if crop in v]
+                area_columns = [v for v in columns_list.values if crop in v]
 
-            prod_col_idx = [0] + [i + 2 for i in area_col_idx[1:]]
+            # "작물명:면적(ha)" 에서 ":면적(ha)" 를 제거
+            area_columns = [col.split(":")[0] for col in set(area_columns)]
+            print(area_columns)
 
-            crop_area_df = vegetable_df.iloc[:, [idx for idx in area_col_idx]]
-            crop_prod_df = vegetable_df.iloc[:, [idx for idx in prod_col_idx]]
+            # for i, v in columns_list.items()
 
-            # 일반과 노지를 합산
-            asd = crop_area_df.columns[1:].str.split(":")
+            if crop in area_columns:
+                crop_col_name = crop + ":면적 (ha)"
+                area_col_idx = [i for i, v in columns_list.items() if crop_col_name == v]
+                print(area_col_idx)
 
-            print(crop_area_df.columns[1:])
+            for col in area_columns:
+                if "노지" in col:
+                    noji_col_idx = [i for i, v in columns_list.items() if crop in v if kind in v]
+
+                if "일반" in col:
+                    normal_col_idx = [i for i, v in columns_list.items() if crop in v if kind in v]
+
+            # if "*"+crop+"*" in area_columns:
+            #
+            # for col in area_columns:
+            #     if
+
+
+            # crop, kind = crop
+            # area_col_idx = [0] + [i for i, v in columns_list.items() if crop in v if kind in v]
+            #
+            # crop = crop[0]
+            # area_col_idx = [0] + [i for i, v in columns_list.items() if crop in v]
+
+            # prod_col_idx = [0] + [i + 2 for i in area_col_idx[1:]]
+            #
+            # crop_area_df = vegetable_df.iloc[:, [idx for idx in area_col_idx]]
+            # crop_prod_df = vegetable_df.iloc[:, [idx for idx in prod_col_idx]]
+            #
+            # # 일반과 노지를 합산
+            # asd = crop_area_df.columns[1:].str.split(":")
+            #
+            # print(crop_area_df.columns[1:])
 
 
     # crop_area_df.columns = col_list
