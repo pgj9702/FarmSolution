@@ -71,34 +71,52 @@ if __name__ == "__main__":
             # 품종이 있으면 분류 (품목, 품종)
             if len(crop) == 2:
                 crop, kind = crop
-                area_columns = [v for v in columns_list.values if crop in v if kind in v]
+                basic_col_name = kind + crop + ":면적 (ha)"
+                area_col_idx = [i for i, v in columns_list.items() if crop in v if kind in v]
 
             elif len(crop) == 1:
                 crop = crop[0]
-                area_columns = [v for v in columns_list.values if crop in v]
+                basic_col_name = crop + ":면적 (ha)"
+                area_col_idx = [i for i, v in columns_list.items() if crop in v]
 
-            # "작물명:면적(ha)" 에서 ":면적(ha)" 를 제거
-            area_columns = [col.split(":")[0] for col in set(area_columns)]
-            print(area_columns)
+            col_idx_lists = [[], [], []]
 
-            # for i, v in columns_list.items()
+            basic_col_idx = []
+            noji_col_idx = []
+            normal_col_idx = []
 
-            if crop in area_columns:
-                crop_col_name = crop + ":면적 (ha)"
-                area_col_idx = [i for i, v in columns_list.items() if crop_col_name == v]
-                print(area_col_idx)
+            for idx in area_col_idx:
+                col_name = columns_list[idx]
 
-            for col in area_columns:
-                if "노지" in col:
-                    noji_col_idx = [i for i, v in columns_list.items() if crop in v if kind in v]
+                if col_name == basic_col_name:
+                    col_idx_lists[0].append(idx)
 
-                if "일반" in col:
-                    normal_col_idx = [i for i, v in columns_list.items() if crop in v if kind in v]
+                elif "노지" in col_name:
+                    col_idx_lists[1].append(idx)
 
-            # if "*"+crop+"*" in area_columns:
-            #
-            # for col in area_columns:
-            #     if
+                elif "일반" in col_name:
+                    col_idx_lists[2].append(idx)
+
+            # 기본, 노지, 일반 의 생산량, 면적 합산
+            # print("basic", len(basic_col_idx))
+            # print("noji", len(noji_col_idx))
+            # print("normal", len(normal_col_idx))
+
+            for idx in range(len(col_idx_lists)):
+                if len(col_idx_lists[idx]) == 0:
+                    col_idx_lists.remove(idx)
+
+            print(col_idx_lists)
+
+
+            # print(vegetable_df.iloc[:, []])
+
+            crop_area_df = pd.DataFrame()
+            crop_prod_df = pd.DataFrame()
+
+
+
+
 
 
             # crop, kind = crop
