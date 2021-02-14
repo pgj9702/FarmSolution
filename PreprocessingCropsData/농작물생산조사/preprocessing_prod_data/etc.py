@@ -38,20 +38,17 @@ if __name__ == "__main__":
     area_output_path = "../preprocessed_area_data/"
     prod_output_path = "../preprocessed_prod_data/"
 
-    fruit_input_file = "과실생산량_2001_2020.csv"
+    etc_input_file = "특용작물생산량_2001_2020.csv"
 
-    fruit_list = ['사과', '배', '복숭아', '포도', '감귤', '단감']
+    etc_list = ["땅콩", "참깨"]
 
-    area_output_file_list = ["사과_-_면적.csv", "배_-_면적.csv", "복숭아_-_면적.csv",
-                              "포도_-_면적.csv", "감귤_-_면적.csv", "단감_-_면적.csv"]
+    etc_df = pd.read_csv(input_path + etc_input_file, encoding="euc-kr")
 
-    prod_output_file_list = ["사과_-_생산량.csv", "배_-_생산량.csv", "복숭아_-_생산량.csv",
-                              "포도_-_생산량.csv", "감귤_-_생산량.csv", "단감_-_생산량.csv"]
+    for crop in etc_list:
+        crop_area_df, crop_prod_df = preprocess(etc_df, crop)
 
-    fruit_df = pd.read_csv(input_path + fruit_input_file, encoding="euc-kr")
+        area_output_file = crop + "_-_면적.csv"
+        prod_output_file = crop + "_-_생산량.csv"
 
-    for fruit, area_output_file, prod_output_file in zip(fruit_list, area_output_file_list, prod_output_file_list):
-        fruit_area_df, fruit_prod_df = preprocess(fruit_df, fruit)
-
-        fruit_area_df.to_csv(area_output_path + area_output_file, index=False, encoding="utf-8-sig")
-        fruit_prod_df.to_csv(prod_output_path + prod_output_file, index=False, encoding="utf-8-sig")
+        crop_area_df.to_csv(area_output_path + area_output_file, index=False, encoding="utf-8-sig")
+        crop_prod_df.to_csv(prod_output_path + prod_output_file, index=False, encoding="utf-8-sig")

@@ -2,21 +2,24 @@ import pandas as pd
 
 
 # return area, prod dataframe
-def preprocess(fruit_df: pd.DataFrame, crop: str) -> (pd.DataFrame, pd.DataFrame):
+def preprocess(tuber_df: pd.DataFrame, crop: str, kind: str) -> (pd.DataFrame, pd.DataFrame):
+
+    if kind == "-":
+        kind = ""
 
     col_list = ["시도별"] + [str(year) for year in range(2001, 2021)]
 
-    fruit_df.columns = list(fruit_df.iloc[0, :])
+    tuber_df.columns = list(tuber_df.iloc[0, :])
 
-    fruit_df = fruit_df.drop(index=0)
+    tuber_df = tuber_df.drop(index=0)
 
-    columns_List = pd.Series(fruit_df.columns)
+    columns_List = pd.Series(tuber_df.columns)
 
-    area_col_idx = [0] + [i for i, v in columns_List.items() if crop in v]
+    area_col_idx = [0] + [i for i, v in columns_List.items() if crop in v if kind in v]
     prod_col_idx = [0] + [i + 2 for i in area_col_idx[1:]]
 
-    crop_area_df = fruit_df.iloc[:, [idx for idx in area_col_idx]]
-    crop_prod_df = fruit_df.iloc[:, [idx for idx in prod_col_idx]]
+    crop_area_df = tuber_df.iloc[:, [idx for idx in area_col_idx]]
+    crop_prod_df = tuber_df.iloc[:, [idx for idx in prod_col_idx]]
 
     crop_area_df.columns = col_list
     crop_prod_df.columns = col_list
@@ -38,20 +41,27 @@ if __name__ == "__main__":
     area_output_path = "../preprocessed_area_data/"
     prod_output_path = "../preprocessed_prod_data/"
 
-    fruit_input_file = "과실생산량_2001_2020.csv"
+    tuber_input_file = "서류생산량_생서_2001_2020.csv"
 
-    fruit_list = ['사과', '배', '복숭아', '포도', '감귤', '단감']
+    tuber_list = ["감자_봄", "감자_가을", "감자_고랭지"]
 
-    area_output_file_list = ["사과_-_면적.csv", "배_-_면적.csv", "복숭아_-_면적.csv",
-                              "포도_-_면적.csv", "감귤_-_면적.csv", "단감_-_면적.csv"]
+    tuber_df = pd.read_csv(input_path + tuber_input_file, encoding="euc-kr")
 
-    prod_output_file_list = ["사과_-_생산량.csv", "배_-_생산량.csv", "복숭아_-_생산량.csv",
-                              "포도_-_생산량.csv", "감귤_-_생산량.csv", "단감_-_생산량.csv"]
+    for tuber in tuber_list:
 
-    fruit_df = pd.read_csv(input_path + fruit_input_file, encoding="euc-kr")
+        crop = tuber.split("_")
 
-    for fruit, area_output_file, prod_output_file in zip(fruit_list, area_output_file_list, prod_output_file_list):
-        fruit_area_df, fruit_prod_df = preprocess(fruit_df, fruit)
+        # 품종이 있으면 분류 (품목, 품종)
+        if len(crop) == 2:
+            crop, kind = crop
+
+        elif len(crop) == 1:
+            crop, kind = crop[0], ""
+
+        area_output_file = crop + "_" + kind + "_면적.csv"
+        prod_output_file = crop + "_" + kind + "_생산량.csv"
+
+        fruit_area_df, fruit_prod_df = preprocess(tuber_df, crop, kind)
 
         fruit_area_df.to_csv(area_output_path + area_output_file, index=False, encoding="utf-8-sig")
         fruit_prod_df.to_csv(prod_output_path + prod_output_file, index=False, encoding="utf-8-sig")
