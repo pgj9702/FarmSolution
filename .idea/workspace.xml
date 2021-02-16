@@ -2,225 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d06a757-ab0d-4067-8378-443708e364aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/PredictionModel/datasets/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PredictionModel/datasets/get_datasets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PredictionModel/preprocessing_datasets/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PredictionModel/preprocessing_datasets/preprocessing_datasets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessing_weather_data/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PredictionModel/elasticnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/elasticnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PredictionModel/extratreesclassifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/extratreesclassifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PredictionModel/gradientboostingregressor.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/gradientboostingregressor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PredictionModel/linearsvr.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/linearsvr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PredictionModel/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PredictionModel/sgdregressor.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/sgdregressor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PredictionModel/stackingregressor.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/stackingregressor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PredictionModel/svr.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/machine_learning/svr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/matplotlib/axes/_axes.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/matplotlib/axes/_axes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/matplotlib/axes/_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/matplotlib/axes/_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/numpy/lib/histograms.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/numpy/lib/histograms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/numpy/lib/tests/test_histograms.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/numpy/lib/tests/test_histograms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/core/frame.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/core/frame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/core/series.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/core/series.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/io/gbq.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/io/gbq.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/io/pytables.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/io/pytables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/tests/extension/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/tests/extension/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/tests/io/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/tests/io/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/tests/io/pytables/test_store.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/pandas/tests/io/pytables/test_store.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/cluster/hierarchy.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/cluster/hierarchy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/io/arff/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/io/arff/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/io/netcdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/io/netcdf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/spatial/_procrustes.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/spatial/_procrustes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/spatial/tests/test__procrustes.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/spatial/tests/test__procrustes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/spatial/tests/test_qhull.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/spatial/tests/test_qhull.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/stats/mstats_basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/stats/mstats_basic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/stats/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/scipy/stats/stats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/calibration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/cluster/_agglomerative.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/cluster/_agglomerative.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/cluster/_mean_shift.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/cluster/_mean_shift.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/cluster/_optics.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/cluster/_optics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/cluster/tests/test_hierarchical.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/cluster/tests/test_hierarchical.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/covariance/_empirical_covariance.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/covariance/_empirical_covariance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/covariance/_robust_covariance.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/covariance/_robust_covariance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/covariance/_shrunk_covariance.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/covariance/_shrunk_covariance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_california_housing.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_california_housing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_covtype.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_covtype.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_kddcup99.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_kddcup99.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_lfw.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_lfw.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_olivetti_faces.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_olivetti_faces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_openml.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_openml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_rcv1.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_rcv1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_samples_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_samples_generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_species_distributions.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_species_distributions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_svmlight_format_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_svmlight_format_io.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_twenty_newsgroups.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/_twenty_newsgroups.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/tests/test_openml.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/datasets/tests/test_openml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_dict_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_dict_learning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_factor_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_factor_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_fastica.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_fastica.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_incremental_pca.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_incremental_pca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_kernel_pca.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_kernel_pca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_lda.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_lda.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_sparse_pca.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/decomposition/_sparse_pca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_bagging.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_bagging.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_forest.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_forest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_gb.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_gb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_hist_gradient_boosting/binning.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_hist_gradient_boosting/binning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_stacking.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_stacking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_weight_boosting.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/_weight_boosting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/tests/test_gradient_boosting.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/tests/test_gradient_boosting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/tests/test_voting.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/ensemble/tests/test_voting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/externals/_arff.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/externals/_arff.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_extraction/image.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_extraction/image.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_extraction/text.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_extraction/text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_selection/_rfe.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_selection/_rfe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_selection/_sequential.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_selection/_sequential.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_selection/_univariate_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/feature_selection/_univariate_selection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/gaussian_process/_gpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/gaussian_process/_gpc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/gaussian_process/_gpr.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/gaussian_process/_gpr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/gaussian_process/kernels.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/gaussian_process/kernels.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/inspection/_plot/partial_dependence.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/inspection/_plot/partial_dependence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/isotonic.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/isotonic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/kernel_approximation.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/kernel_approximation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/kernel_ridge.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/kernel_ridge.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_coordinate_descent.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_coordinate_descent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_huber.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_huber.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_least_angle.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_least_angle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_logistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_logistic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_omp.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_omp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_passive_aggressive.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_passive_aggressive.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_perceptron.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_perceptron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_ransac.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_ransac.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_ridge.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_ridge.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_theil_sen.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/_theil_sen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/tests/test_logistic.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/linear_model/tests/test_logistic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_isomap.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_isomap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_locally_linear.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_locally_linear.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_mds.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_mds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_spectral_embedding.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_spectral_embedding.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_t_sne.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/manifold/_t_sne.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_plot/confusion_matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_plot/confusion_matrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_plot/det_curve.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_plot/det_curve.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_plot/precision_recall_curve.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_plot/precision_recall_curve.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_plot/roc_curve.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_plot/roc_curve.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_ranking.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/metrics/_ranking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/_search_successive_halving.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/_search_successive_halving.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/_split.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/_split.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/_validation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/tests/test_split.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/model_selection/tests/test_split.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/multiclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/multiclass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/multioutput.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/multioutput.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/neighbors/_nca.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/neighbors/_nca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/neural_network/_multilayer_perceptron.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/neural_network/_multilayer_perceptron.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/preprocessing/_discretization.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/preprocessing/_discretization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/preprocessing/tests/test_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/preprocessing/tests/test_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/semi_supervised/_label_propagation.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/semi_supervised/_label_propagation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/semi_supervised/_self_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/semi_supervised/_self_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/svm/_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/svm/_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/svm/_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/svm/_classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/tree/_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/tree/_classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/tree/_export.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/tree/_export.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/utils/_mocking.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/utils/_mocking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/utils/class_weight.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/utils/class_weight.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/utils/estimator_checks.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/utils/estimator_checks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/utils/validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/venv/Lib/site-packages/sklearn/utils/validation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/read_weather_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/read_weather_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/농업주산지상세날씨조회API.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessing_weather_data/weather.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/test2019.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/test2019.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/test22019.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/test22019.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/testDaily2019.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/testDaily2019.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2001.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2001.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2002.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2002.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2003.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2003.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2004.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2004.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2005.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2005.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2006.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2006.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2007.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2007.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2008.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2008.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2009.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2009.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2010.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2010.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2011.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2011.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2012.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2012.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2013.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2013.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2014.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2014.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2015.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2015.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2016.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2016.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2017.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2017.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2018.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2018.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2019.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2019.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/일통계_data/농업주산지상세날씨_일통계_2020.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/weather_data/농업주산지상세날씨_일통계_2020.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/감귤_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/감귤_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/감자_가을_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/감자_가을_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/감자_고랭지_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/감자_고랭지_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/감자_봄_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/감자_봄_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/건고추_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/건고추_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/고구마_밤_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/고구마_밤_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/깻잎_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/깻잎_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/녹두_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/녹두_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/단감_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/단감_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/당근_가을_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/당근_가을_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/당근_겨울_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/당근_겨울_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/당근_고랭지_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/당근_고랭지_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/당근_봄_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/당근_봄_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/대파_가을대파_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/대파_가을대파_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/대파_겨울대파_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/대파_겨울대파_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/대파_봄대파_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/대파_봄대파_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/대파_여름대파_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/대파_여름대파_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/들깨_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/들깨_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/땅콩_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/땅콩_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/마늘_난지형_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/마늘_난지형_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/마늘_한지형_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/마늘_한지형_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/무_가을_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/무_가을_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/무_겨울_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/무_겨울_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/무_고랭지_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/무_고랭지_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/무_봄_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/무_봄_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/미나리_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/미나리_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/방울토마토_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/방울토마토_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/배_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/배_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/배추_가을_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/배추_가을_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/배추_겨울_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/배추_겨울_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/배추_고랭지_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/배추_고랭지_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/배추_봄_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/배추_봄_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/복숭아_백도_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/복숭아_백도_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/복숭아_유명_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/복숭아_유명_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/붉은고추_붉은고추_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/붉은고추_붉은고추_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/사과_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/사과_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/생강_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/생강_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/시금치_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/시금치_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/쌀_일반계_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/쌀_일반계_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/양배추_가을_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/양배추_가을_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/양배추_고랭지_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/양배추_고랭지_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/양배추_봄_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/양배추_봄_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/양파_조생종_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/양파_조생종_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/양파_중만생종_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/양파_중만생종_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/얼갈이배추_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/얼갈이배추_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/열무_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/열무_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/오이_가시계통_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/오이_가시계통_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/오이_다다기계통_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/오이_다다기계통_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/오이_취청_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/오이_취청_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/쪽파_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/쪽파_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/참깨_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/참깨_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/참다래_-_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/참다래_-_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/콩_백태_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/콩_백태_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/팥_적두_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/팥_적두_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/포도_캠벨얼리_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/포도_캠벨얼리_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/풋고추_꽈리고추_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/풋고추_꽈리고추_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/풋고추_청양고추_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/풋고추_청양고추_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/풋고추_풋고추_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/풋고추_풋고추_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/호박_애호박_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/호박_애호박_날씨.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물별_일통계_data/호박_쥬키니_날씨.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/호박_쥬키니_날씨.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +35,28 @@
       <recent name="C:\Users\USER\PycharmProjects\FarmSolution\PredictionModel\machine_learning" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.preprocessing_datasets">
+  <component name="RunManager" selected="Python.TEST">
+    <configuration name="TEST" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="FarmSolution" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/TEST.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="datasets" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FarmSolution" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -338,41 +141,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="vegetable" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="FarmSolution" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\USER\AppData\Local\Programs\Python\Python38\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PreprocessingCropsData/농작물생산조사/preprocessing_prod_data" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PreprocessingCropsData/농작물생산조사/preprocessing_prod_data/vegetable.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.vegetable" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.test (1)" />
       <item itemvalue="Python.datasets" />
       <item itemvalue="Python.preprocessing_datasets" />
+      <item itemvalue="Python.TEST" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.TEST" />
         <item itemvalue="Python.preprocessing_datasets" />
         <item itemvalue="Python.datasets" />
         <item itemvalue="Python.test (1)" />
         <item itemvalue="Python.test" />
-        <item itemvalue="Python.vegetable" />
       </list>
     </recent_temporary>
   </component>
@@ -399,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613433977830</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="21.02.16 update">
+      <created>1613438339577</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1613438339577</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
