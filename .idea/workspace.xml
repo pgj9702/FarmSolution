@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7d06a757-ab0d-4067-8378-443708e364aa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PredictionModel/preprocessing_datasets/preprocessing_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictionModel/preprocessing_datasets/preprocessing_datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessing_weather_data/weather.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/preprocessing_weather_data/weather.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/read_weather_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/read_weather_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물목록.csv" beforeDir="false" afterPath="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/작물목록.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1nxHYdCkXuArHWqu2qXPgKbPqbe" />
@@ -35,7 +44,7 @@
       <recent name="C:\Users\USER\PycharmProjects\FarmSolution\PredictionModel\machine_learning" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.TEST">
+  <component name="RunManager" selected="Python.read_weather_data">
     <configuration name="TEST" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FarmSolution" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -99,6 +108,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="read_weather_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="FarmSolution" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PreprocessingCropsData/농업주산지상세날씨/read_weather_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FarmSolution" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -120,41 +150,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="FarmSolution" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PreprocessingCropsData" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PreprocessingCropsData/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.test (1)" />
       <item itemvalue="Python.datasets" />
       <item itemvalue="Python.preprocessing_datasets" />
       <item itemvalue="Python.TEST" />
+      <item itemvalue="Python.read_weather_data" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.TEST" />
+        <item itemvalue="Python.read_weather_data" />
         <item itemvalue="Python.preprocessing_datasets" />
+        <item itemvalue="Python.TEST" />
         <item itemvalue="Python.datasets" />
         <item itemvalue="Python.test (1)" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -188,8 +197,26 @@
       <option name="project" value="LOCAL" />
       <updated>1613438339577</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="21.02.16 update">
+      <created>1613453949056</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1613453949056</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="21.02.08 update" />

@@ -183,6 +183,7 @@ if __name__ == "__main__":
 
             # print("작물", crop, " 의 날짜 결측치")
 
+        print(crop_weather_df[crop_weather_df["특보 코드"] == "S3"]["일 강수량"])
         print("종료")
 
     print(error_list)
