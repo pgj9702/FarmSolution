@@ -220,19 +220,19 @@ if __name__ == "__main__":
     year = "2019"
     AREA_ID = "999999999"   # 지역 ID, 999999999 일 경우 모든 지역 조회
     PA_CROP_SPE_ID = "PA999999"   # 작물특성 ID, PA999999 일 경우 모든 작물 조회
-    file_name = "일통계_data/test2%s.csv" % year
+    file_name = "weather_data/test2%s.csv" % year
 
     # DayStatistics_to_csv_yearly(decode_key, year, AREA_ID, PA_CROP_SPE_ID, file_name)
 
     # for year in [str(i) for i in range(2006, 2021)]:
-    #     file_name = "일통계_data/농업주산지상세날씨_일통계_%s.csv" % year
+    #     file_name = "weather_data/농업주산지상세날씨_일통계_%s.csv" % year
     #     DayStatistics_to_csv_yearly(decode_key, year, AREA_ID, PA_CROP_SPE_ID, file_name)
 
     # 작물별 데이터 저장
-    crops_df = pd.read_csv("작물목록.csv", encoding='cp949')
+    crops_df = pd.read_csv("../작물목록.csv", encoding='cp949')
 
     for crop_id, crop_name, crop_kind in zip(crops_df["작물별 특성 아이디"], crops_df["작물명"], crops_df["세부분류"]):
 
-        file_name = "작물별_일통계_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
+        file_name = "preprocessed_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
 
         DayStatistics_to_csv_byCrop(decode_key, crop_id, file_name)

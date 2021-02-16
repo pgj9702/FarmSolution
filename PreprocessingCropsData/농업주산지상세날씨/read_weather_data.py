@@ -42,7 +42,7 @@ def func1():
     # ReadData 클래스 객체 생성
     read_data = ReadData()
 
-    weather_info_path = "일통계_data/"
+    weather_info_path = "weather_data/"
     weather_info_file = "농업주산지상세날씨_일통계_2001.csv"
 
     weather_df = read_data.read_csv(weather_info_path, weather_info_file)
@@ -123,7 +123,7 @@ if __name__ == "__main__":
 
     for crop_id, crop_name, crop_kind in zip(crops_df["작물별 특성 아이디"], crops_df["작물명"], crops_df["세부분류"]):
 
-        file_name = "작물별_일통계_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
+        file_name = "preprocessed_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
 
         crop_weather_df = pd.read_csv(file_name)
 
