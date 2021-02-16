@@ -22,6 +22,7 @@ if __name__ == "__main__":
 
     idx_list = []
 
+
     for i, v in area_name_list.items():
         if len(v) == 1:
             idx_list.append(i)
