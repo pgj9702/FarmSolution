@@ -236,3 +236,5 @@ if __name__ == "__main__":
         file_name = "preprocessed_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
 
         DayStatistics_to_csv_byCrop(decode_key, crop_id, file_name)
+
+
