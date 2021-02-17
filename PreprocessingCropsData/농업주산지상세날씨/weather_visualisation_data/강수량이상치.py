@@ -68,3 +68,4 @@ print(data_copy[data_copy["일 강수량"] > 200])
 #                       '일 최저기온', '일 강수량', '일 누적일조시간']])
 # plt.show()
 # plt.savefig("graphwithoutoverfits.png")
+
