@@ -9,3 +9,5 @@ def elasticnet(X, y, alpha=0.1, l1_ratio=0.5, random_state=42):
     elastic_net = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=random_state)
     elastic_net.fit(X, y)
     return elastic_net
+
+# 과실류 a = 0.001, l1_ratio = 0.1일 경우 가장 좋은 성능
