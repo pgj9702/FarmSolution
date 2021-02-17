@@ -65,6 +65,6 @@ print(data_copy[data_copy["일 강수량"] > 200])
 # 이상치 제거한 값의 그래프
 # jeju_df['일 강수량'] = data_copy['일 강수량']
 # sns.pairplot(jeju_df[['일 평균상대습도', '일 평균기온', '일 평균풍속', '일 최고기온', '일 최저상대습도',
-       '일 최저기온', '일 강수량', '일 누적일조시간']])
+#                       '일 최저기온', '일 강수량', '일 누적일조시간']])
 # plt.show()
 # plt.savefig("graphwithoutoverfits.png")
