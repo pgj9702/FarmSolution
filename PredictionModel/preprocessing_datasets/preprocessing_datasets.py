@@ -129,9 +129,15 @@ if __name__ == "__main__":
         temp_df = preprocessing_df[preprocessing_df["지역 이름"] == area]
         print(temp_df)
 
-        year_list = list(set(temp_df["연월일"]))
+        growing_period_list = []
 
-        print(year_list)
+        print(temp_df["연월일"].copy)
+
+        # year_list = list(set(temp_df["연월일"].str.split("-").str[0]))
+        #
+        # year_list.sort()
+        #
+        # print(year_list)
 
         # for year in year_list:
         #     print(year)
