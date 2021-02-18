@@ -69,3 +69,36 @@ print(data_copy[data_copy["일 강수량"] > 200])
 # plt.show()
 # plt.savefig("graphwithoutoverfits.png")
 
+
+# print("일 강수량과 일 평균상대습도 상관관계")
+# print(np.corrcoef(data_copy['일 강수량'], data_copy['일 평균상대습도']))
+
+# print("일 강수량과 일 평균기온 상관관계")
+# print(np.corrcoef(data_copy['일 강수량'], data_copy['일 평균기온']))
+
+# print("일 강수량과 일 최고기온 상관관계")
+# print(np.corrcoef(data_copy['일 강수량'], data_copy['일 최고기온']))
+
+# print("일 강수량과 일 최저상대습도 상관관계")
+# print(np.corrcoef(data_copy['일 강수량'], data_copy['일 최저상대습도']))
+
+# print("일 강수량과 일 최저기온 상관관계")
+# print(np.corrcoef(data_copy['일 강수량'], data_copy['일 최저기온']))
+
+# print("일 강수량과 일 누적일조시간 상관관계")
+# print(np.corrcoef(data_copy['일 강수량'], data_copy['일 누적일조시간']))
+
+
+# 지역 컬럼을 기준으로 평균값
+print(pd.pivot_table(data_copy, index=["지역 이름"]))
+# 특정 value 만 구해서 계산 가능 평균값
+print(pd.pivot_table(data_copy, index=["지역 이름"], values=["일 최고기온"]))
+# aggfunc -> mean, sum
+print(pd.pivot_table(data_copy, index=["지역 이름"], values=["일 최고기온", "일 최저기온"], aggfunc=[np.mean], fill_value=0, margins=True))
+
+# 강수량과 평균상대습도 및 기온을 확인
+sns.pairplot(data_copy, x_vars=["일 강수량"], y_vars=["일 평균상대습도", "일 평균기온"], kind='reg', height=3)
+plt.show()
+
+tmp_max = data_copy["일 최고기온"].max()
+print(tmp_max)
