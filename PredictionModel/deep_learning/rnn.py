@@ -3,6 +3,9 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
+# RNN model
+
+
 # model = keras.Sequential()
 # Add an Embedding layer expecting input vocab of size 1000, and
 # output embedding dimension of size 64.

@@ -1,6 +1,7 @@
 import tensorflow as tf
 from keras import layers, models
 
+# DNN model
 # 784개 입력, 은닉 노드 100, 50
 Nin = 784
 Nh_l = [100, 50]
