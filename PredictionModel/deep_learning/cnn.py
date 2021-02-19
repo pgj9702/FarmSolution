@@ -4,6 +4,8 @@ from keras import models, layers
 from keras import backend, datasets
 import matplotlib.pyplot as plt
 
+# CNN model
+
 
 # 손실 그래프
 def plot_loss(history):
