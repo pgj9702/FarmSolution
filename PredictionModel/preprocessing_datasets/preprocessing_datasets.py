@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import os
 import datetime as dt
@@ -37,9 +38,14 @@ def preprocessing_datasets():
 def func(x):
     print(x)
 
+def to_date_type(x):
+    # x = "2000-01-31"
+    temp = [int(i) for i in x.split("-")]
+    return dt.date(temp[0], temp[1], temp[2])
+
 
 if __name__ == "__main__":
-    
+
     # 법정동코드에서 광역시도 코드만 정리하여 csv 파일롤 저장
     # save_sido_csv()
 
@@ -112,26 +118,61 @@ if __name__ == "__main__":
     test = day - dt.timedelta(days=366)
 
     # 작물별 생육 기간
+    crop_growing_period = growing_period[(growing_period["품목"] == crop.split("_")[0])
+                              & (growing_period["품종"] == crop.split("_")[1])]
 
-    start_md = growing_period[(growing_period["품목"] == crop.split("_")[0])
-                              & (growing_period["품종"] == crop.split("_")[1])]["생육시작"].values[0]
-    end_md = growing_period[(growing_period["품목"] == crop.split("_")[0])
-                              & (growing_period["품종"] == crop.split("_")[1])]["생육종료"].values[0]
+    start_md = crop_growing_period["생육시작"].values[0].split("-")
+    end_md = crop_growing_period["생육종료"].values[0].split("-")
 
-    print(start_md)
-    print(end_md)
+    if start_md[0] != "":
+        s_year = 2000; s_month = int(start_md[0]); s_day = int(start_md[1])
+        e_year = 2000; e_month = int(end_md[0]); e_day = int(end_md[1])
+    else:
+        s_year = 2000; s_month = 1; s_day = 1
+        e_year = 2000; e_month = int(end_md[0]); e_day = int(end_md[1])
+
+    start_md = dt.date(s_year, s_month, s_day)
+    end_md = dt.date(e_year, e_month, e_day)
 
     final_df = pd.DataFrame(columns=datasets_columns)
 
     area_list = list(set(preprocessing_df["지역 이름"]))
 
     for area in area_list:
-        temp_df = preprocessing_df[preprocessing_df["지역 이름"] == area]
-        print(temp_df)
+        temp_df01 = preprocessing_df[preprocessing_df["지역 이름"] == area]
+        print(temp_df01)
 
-        growing_period_list = []
+        # 특정 지역의
+        date_series = temp_df01["연월일"].apply(lambda x: to_date_type(x))
 
-        print(temp_df["연월일"].copy)
+        min_year = int((np.min(temp_df01["연월일"]))[:4])
+
+        max_year = int((np.max(temp_df01["연월일"]))[:4])
+
+        year_range = range(min_year, max_year + 1)
+
+        for year in year_range:
+            start_ymd = dt.date(year, start_md.month, start_md.day)
+            end_ymd = dt.date(year, end_md.month, end_md.day)
+
+            date_in_growing_period = date_series[(date_series > start_ymd) & (date_series < end_ymd)]
+
+            print(date_in_growing_period)
+
+            if
+
+
+
+        # temp_df["연월일"]
+        #
+        # for i, v in date_series.items():
+        #     print(i, type(v))
+        #
+        # print(pd.to_datetime(start_md))
+        # print(pd.to_datetime(end_md))
+
+        # print(pd.to_datetime(temp_df["연월일"])[7113])
+        # print(pd.to_datetime(temp_df["연월일"])[7113] + pd.to_timedelta("1 days"))
 
         # year_list = list(set(temp_df["연월일"].str.split("-").str[0]))
         #
