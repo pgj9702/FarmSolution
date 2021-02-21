@@ -194,6 +194,3 @@ if __name__ == "__main__":
         print("종료")
 
     print(error_list)
-
-
-
