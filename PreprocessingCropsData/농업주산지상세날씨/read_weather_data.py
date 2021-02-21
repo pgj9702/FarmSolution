@@ -178,8 +178,6 @@ if __name__ == "__main__":
 
             area_warn_list = list(area_df["특보 코드"])
 
-            print(day_list)
-
             for idx in range(len(day_list) - 1):
                 if day_list[idx] == day_list[idx + 1] and area_warn_list[idx] == area_warn_list[idx + 1]:
                     print("중복 발생", area, "지역 아이디", day_list[idx], day_list[idx + 1])

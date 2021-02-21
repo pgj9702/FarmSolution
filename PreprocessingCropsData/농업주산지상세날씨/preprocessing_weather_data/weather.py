@@ -8,8 +8,6 @@ import datetime
 
 # 작물별 데이터를 csv 로 저장 (2001-2019 까지 모든 날짜, 모든 지역)
 def DayStatistics_to_csv_byCrop(serviceKey, PA_CROP_SPE_ID, file_name):
-    # request 의 pageNo
-    pageNo = 1
 
     # url
     url = "http://apis.data.go.kr/1360000/FmlandWthrInfoService/getDayStatistics"
@@ -38,6 +36,7 @@ def DayStatistics_to_csv_byCrop(serviceKey, PA_CROP_SPE_ID, file_name):
         ST_YMD = "%s0101" % year
         ED_YMD = "%s1231" % year
 
+        # request 의 pageNo
         # 페이지 1로 초기화
         pageNo = 1
 
@@ -233,7 +232,7 @@ if __name__ == "__main__":
 
     for crop_id, crop_name, crop_kind in zip(crops_df["작물별 특성 아이디"], crops_df["작물명"], crops_df["세부분류"]):
 
-        file_name = "preprocessed_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
+        file_name = "../preprocessed_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
 
         DayStatistics_to_csv_byCrop(decode_key, crop_id, file_name)
 
