@@ -102,7 +102,10 @@ def func1():
 
                 day_list = [datetime.datetime.strptime(day, "%Y-%m-%d %H:%M:%S") for day in day_list]
 
+                day_list.sort()
+
                 for idx in range(len(day_list) - 1):
+                    print(day_list[idx], day_list[idx + 1])
                     if day_list[idx] < day_list[idx + 1] - datetime.timedelta(days=1) and \
                             list(area_crop_df["특보 코드"])[idx] == list(area_crop_df["특보 코드"])[idx + 1]:
                         print(area, cropId)
@@ -175,11 +178,16 @@ if __name__ == "__main__":
 
             area_warn_list = list(area_df["특보 코드"])
 
+            print(day_list)
+
             for idx in range(len(day_list) - 1):
-                if day_list[idx] != day_list[idx + 1] - datetime.timedelta(days=1) and \
-                        area_warn_list[idx] == area_warn_list[idx + 1]:
-                    print("중복/누락 발생", area, "지역 아이디", day_list[idx], day_list[idx + 1])
-                    error_list = error_list.append({"지역 아이디": area, "발생일1": day_list[idx], "발생일2": day_list[idx + 1]})
+                if day_list[idx] == day_list[idx + 1] and area_warn_list[idx] == area_warn_list[idx + 1]:
+                    print("중복 발생", area, "지역 아이디", day_list[idx], day_list[idx + 1])
+                    error_list.append({"지역 아이디": area, "발생일1": day_list[idx], "발생일2": day_list[idx + 1]})
+                elif day_list[idx] != day_list[idx + 1] - datetime.timedelta(days=1) and \
+                        day_list[idx] != day_list[idx + 1]:
+                    print("누락 발생", area, "지역 아이디", day_list[idx], day_list[idx + 1])
+                    error_list.append({"지역 아이디": area, "발생일1": day_list[idx], "발생일2": day_list[idx + 1]})
 
             # print("작물", crop, " 의 날짜 결측치")
 

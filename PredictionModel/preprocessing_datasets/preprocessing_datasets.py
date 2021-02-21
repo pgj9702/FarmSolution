@@ -157,9 +157,12 @@ if __name__ == "__main__":
 
             date_in_growing_period = date_series[(date_series > start_ymd) & (date_series < end_ymd)]
 
-            print(date_in_growing_period)
+            print(date_in_growing_period, len(date_in_growing_period))
 
-            if
+            print(start_ymd, end_ymd)
+
+            print("일 수 :", end_ymd - start_ymd + dt.timedelta(days=1))
+
 
 
 

@@ -8,8 +8,6 @@ import datetime
 
 # 작물별 데이터를 csv 로 저장 (2001-2019 까지 모든 날짜, 모든 지역)
 def DayStatistics_to_csv_byCrop(serviceKey, PA_CROP_SPE_ID, file_name):
-    # request 의 pageNo
-    pageNo = 1
 
     # url
     url = "http://apis.data.go.kr/1360000/FmlandWthrInfoService/getDayStatistics"
@@ -34,7 +32,7 @@ def DayStatistics_to_csv_byCrop(serviceKey, PA_CROP_SPE_ID, file_name):
     df_for_storage.to_csv(file_name, index=False, encoding="utf-8-sig")
 
     # 2001년 1월 1일부터 2019년 12월 31일까지 반복하는 while 문
-    for year in range(2001, 2020):
+    for year in range(2000, 2020):
         ST_YMD = "%s0101" % year
         ED_YMD = "%s1231" % year
 
@@ -217,10 +215,10 @@ if __name__ == "__main__":
     decode_key = unquote(
         "p3RjGK2spO6S8g%2Bc7oh4wF2EbfQBUbljSP1wLcCY%2BbfQBwQDSWqMFjgmnBlfSeNTRk9%2Fa5peMnYbRNvXMqSGtQ%3D%3D")
 
-    year = "2019"
+    year = "2017"
     AREA_ID = "999999999"   # 지역 ID, 999999999 일 경우 모든 지역 조회
     PA_CROP_SPE_ID = "PA999999"   # 작물특성 ID, PA999999 일 경우 모든 작물 조회
-    file_name = "weather_data/test2%s.csv" % year
+    file_name = "../weather_data/농업주산지상세날씨_일통계_%s.csv" % year
 
     # DayStatistics_to_csv_yearly(decode_key, year, AREA_ID, PA_CROP_SPE_ID, file_name)
 
@@ -233,7 +231,7 @@ if __name__ == "__main__":
 
     for crop_id, crop_name, crop_kind in zip(crops_df["작물별 특성 아이디"], crops_df["작물명"], crops_df["세부분류"]):
 
-        file_name = "preprocessed_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
+        file_name = "../preprocessed_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
 
         DayStatistics_to_csv_byCrop(decode_key, crop_id, file_name)
 
