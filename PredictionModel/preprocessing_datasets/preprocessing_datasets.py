@@ -25,6 +25,10 @@ def save_sido_csv():
                           else row["법정동코드"][:4]
                           for _, row in sido_code.iterrows()]
 
+    # 생산량, 면적 데이터에서는 "제주도" 라고 표기되어 있음
+    # 법정동코드 전체자료.txt 파일에 "제주특별차지도" 를 "제주도" 로 수정하여 저장
+    sido_code.loc[sido_code["법정동명"] == "제주특별자치도", "법정동명"] = "제주도"
+
     sido_code.to_csv("광역시도 코드.csv", index=False)
 
 def preprocessing_datasets():
@@ -74,8 +78,9 @@ if __name__ == "__main__":
                           '일 최저기온', '일 강수량', '일 누적일조시간', '작물 명', '작물별 특성아이디', '작물별 특성 이름',
                           '특보 코드', '특보 발효 여부', '연월일']
 
-    datasets_columns = ['지역 이름', '년도', '일 최저기온', '일 평균기온', '일 최고기온', '일 평균풍속',
-                        '일 평균상대습도', '일 최저상대습도', '일 강수량', '일 누적일조시간', '한파 일 수', '폭염 일 수']
+    datasets_columns = ['지역 이름', '년도', '생산량', '면적', '일 평균기온', '일 최저기온', '일 최고기온', '일 평균풍속',
+                        '일 평균상대습도', '일 최저상대습도', '일 강수량', '일 누적일조시간']
+    # , '태풍', '일교차', '일교차 10 이상', '한파 일 수', '폭염 일 수',
 
     # ********* 지역 통합 *********
 
@@ -138,12 +143,23 @@ if __name__ == "__main__":
 
     area_list = list(set(preprocessing_df["지역 이름"]))
 
+    # 생산량, 면적 csv 파일 읽기
+
+    prod_data = pd.read_csv("../../PreprocessingCropsData/농작물생산조사/preprocessed_prod_data/" + crop + "_생산량.csv")
+    area_data = pd.read_csv("../../PreprocessingCropsData/농작물생산조사/preprocessed_area_data/" + crop + "_면적.csv")
+
+    print(prod_data)
+    # print(prod_data.columns)
+    print(area_data)
+    # print(area_data.columns)
+
+
     for area in area_list:
         temp_df01 = preprocessing_df[preprocessing_df["지역 이름"] == area]
         print(temp_df01)
 
         # 특정 지역의
-        date_series = temp_df01["연월일"].apply(lambda x: to_date_type(x))
+        date_series = temp_df01["연월일"].apply(to_date_type)
 
         min_year = int((np.min(temp_df01["연월일"]))[:4])
 
@@ -155,13 +171,80 @@ if __name__ == "__main__":
             start_ymd = dt.date(year, start_md.month, start_md.day)
             end_ymd = dt.date(year, end_md.month, end_md.day)
 
-            date_in_growing_period = date_series[(date_series > start_ymd) & (date_series < end_ymd)]
+            if start_ymd in date_series.values and end_ymd in date_series.values:
+                # print("good")
+                temp_df02 = temp_df01[(date_series >= start_ymd) & (date_series <= end_ymd)]
 
-            print(date_in_growing_period, len(date_in_growing_period))
+            else:
+                # print("break")
+                # print(start_ymd, end_ymd)
+                # print(date_series.values[0], date_series.values[len(date_series)-1])
 
-            print(start_ymd, end_ymd)
+                # 다음 year 로 넘어감
+                continue
 
-            print("일 수 :", end_ymd - start_ymd + dt.timedelta(days=1))
+            # print(date_in_growing_period, len(date_in_growing_period))
+            #
+            # print(start_ymd, end_ymd)
+            #
+            # print("일 수 :", end_ymd - start_ymd + dt.timedelta(days=1))
+
+            # temp_df01.columns
+
+            # ['지역 이름', '년도', '생산량', '면적', '일 평균기온', '일 최저기온', '일 최고기온', '일 평균풍속', '일 평균상대습도',
+            # '일 최저상대습도', '일 강수량', '일 누적일조시간', '태풍', '일교차', '일교차 10 이상', '한파 일 수', '폭염 일 수']
+
+            # datasets_columns
+            # '지역 이름', '년도', '일 평균기온', '일 최저기온', '일 최고기온', '일 평균풍속', '일 평균상대습도',
+            # '일 최저상대습도', '일 강수량', '일 누적일조시간', '한파 일 수', '폭염 일 수'
+            # 추가할 col : 태풍 수, 일교차(하루 최고 기온과 최저 기온 차, 일교차가 큰 날)?
+
+            # 한파
+            # 10월~4월 동안 다음 어느 하나에 해당하는 경우
+            # ① 아침 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하이고 평년값보다 3℃가 낮을 것으로 예상될 때
+            # ② 아침 최저기온이 -12℃ 이하가 2일 이상 지속될 것으로 예상될 때
+            # ③ 급격한 저온현상으로 중대한 피해가 예상될 때
+
+            # 폭염
+            # 일최고기온이 33℃ 이상인 상태가 2일 이상 지속될 것으로 예상될 때
+
+            # 한파
+            # cold_wave = ??
+
+            # 폭염
+            # heat_wave = ??
+    
+            print("생산량 면적 확인")
+            print(prod_data[prod_data["시도별"] == area][str(year)].values[0])
+            print(area_data[prod_data["시도별"] == area][str(year)].values[0])
+
+            values_of_new_row = [area, year,
+                                 prod_data[prod_data["시도별"] == area][str(year)].values[0],
+                                 area_data[prod_data["시도별"] == area][str(year)].values[0],
+                                 temp_df02['일 평균기온'].mean(),
+                                 temp_df02['일 최저기온'].mean(),
+                                 temp_df02['일 최고기온'].mean(),
+                                 temp_df02['일 평균풍속'].mean(),
+                                 temp_df02['일 평균상대습도'].mean(),
+                                 temp_df02['일 최저상대습도'].mean(),
+                                 temp_df02['일 강수량'].mean(),
+                                 temp_df02['일 누적일조시간'].mean()
+
+                                 # temp_df02['태풍'].mean(),
+                                 # temp_df02['일교차'].mean(),
+                                 # temp_df02['일교차 10 이상'].mean(),
+                                 # temp_df02['한파 일 수'].mean(),
+                                 # temp_df02['폭염 일 수'].mean()
+                                 ]
+
+            new_row = {key: value for key, value in zip(datasets_columns, values_of_new_row)}
+
+            final_df = final_df.append(new_row, ignore_index=True)
+
+    final_df.to_csv("감귤_dataset.csv", index=False, encoding="utf-8-sig")
+
+
+
 
 
 
@@ -193,14 +276,6 @@ if __name__ == "__main__":
         #
         # final_df.append(new_row, ignore_index=True)
 
-    # 한파
-    # 10월~4월 동안 다음 어느 하나에 해당하는 경우
-    # ① 아침 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하이고 평년값보다 3℃가 낮을 것으로 예상될 때
-    # ② 아침 최저기온이 -12℃ 이하가 2일 이상 지속될 것으로 예상될 때
 
-    # ③ 급격한 저온현상으로 중대한 피해가 예상될 때
-
-    # 폭염
-    # 일최고기온이 33℃ 이상인 상태가 2일 이상 지속될 것으로 예상될 때
 
 
