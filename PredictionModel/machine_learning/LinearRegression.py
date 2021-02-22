@@ -7,9 +7,9 @@ from sklearn.model_selection import train_test_split
 # n_jobs : 계산에 사용할 작업 수
 
 # LinearRegression(fit_intercept, normalize, copy_X, n_jobs)
-def reg(X,y):
+def reg(X, y):
 
     #LinearRegression model code
     linear_reg = LinearRegression()
-    linear_reg.fit(X,y)
+    linear_reg.fit(X, y)
     return linear_reg
