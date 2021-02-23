@@ -4,7 +4,7 @@ from PredictionModel.machine_learning.LinearRegression import reg
 
 
 if __name__ == "__main__":
-    train_set = pd.read_csv("preprocessing_datasets/감귤_dataset.csv")
+    train_set = pd.read_csv("datasets/감귤_-_dataset.csv")
 
     target = train_set["생산량"]
     
