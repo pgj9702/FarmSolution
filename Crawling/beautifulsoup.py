@@ -2,6 +2,7 @@ import requests
 import bs4
 from bs4 import BeautifulSoup
 import pandas as pd
+from pyparsing import col
 
 
 def typhoon():
@@ -19,36 +20,49 @@ def typhoon():
 
         table = table[1]
 
-
         df = pd.DataFrame()
 
         column = ['연월일', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '합계']
 
         df = pd.DataFrame(columns=column)
 
+        values = [1 for _ in range(14)]
+
+        diction = {key: value for key, value in zip(column, values)}
+
+        df = df.append(diction, ignore_index=True)
+
+        row_count = -1
+        col_count = 1
+
         for tr_table in table:
             for sell in tr_table:
                 if type(sell) is bs4.element.Tag:
-                    if sell.tag == "th":
+                    # print(sell, sell.text, sell.name)
+                    if sell.name == "th":
                         year = sell.text
+                        col_count = 1
+                        row_count += 1
+                        df.loc[row_count, "연월일"] = year
 
-                    elif sell.tag == "td":
+                    elif sell.name == "td":
                         value = sell.text
 
+                        df.iloc[row_count, col_count] = value
+                        col_count += 1
+
+        print(df)
+
+        df = df.replace(" ", "")
+        #df = df.replace("\xa0", "")
+
+        df.to_csv("typhoon.csv", encoding="utf-8", index=False)
 
 
 
 
 
 
-                    #print(sell)
-
-
-        # if table.text[0]
-
-        # titles = div.select('div>table')
-        # for table in titles:
-        #     print(table.get_text())
 
     else:
         print(response.status_code)
