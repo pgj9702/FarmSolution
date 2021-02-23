@@ -106,4 +106,3 @@ if __name__ == "__main__":
     file_name = "../weather_data/일기상자료_" + start_ymd + "_" + end_ymd + ".csv"
 
     OutlierStatistics_to_csv(serviceKey, file_name, start_ymd, end_ymd)
-
