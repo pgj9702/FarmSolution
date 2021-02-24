@@ -9,7 +9,7 @@ if __name__ == "__main__":
     
     train_set = train_set.drop(["생산량", "지역 이름"], axis=1)
 
-    X_train, X_test = train_set.iloc[:-1, :], train_set.iloc[-1:, :]
+    X_train, X_test = train_set.iloc[:-1, :], train_set.iloc[-1:, :]      # 년도
 
     y_train, y_test = target[:-1], target[-1:]
 
