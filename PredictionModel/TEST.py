@@ -1,7 +1,6 @@
 import pandas as pd
 import datetime as dt
-from PredictionModel.machine_learning.LinearRegression import reg
-
+from machine_learning.LinearRegression import reg
 
 if __name__ == "__main__":
     train_set = pd.read_csv("datasets/감귤_-_dataset.csv")
