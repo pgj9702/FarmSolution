@@ -32,6 +32,10 @@ def save_sido_csv():
     sido_code.to_csv("광역시도 코드.csv", index=False)
 
 
+# 날짜 string format "yyyy-mm-dd" 를 datetime.date 형으로 변환'
+
+
+
 def to_date_type(x):
     # x = "2000-01-31"
     temp = [int(i) for i in x.split("-")]
