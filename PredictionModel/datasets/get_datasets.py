@@ -6,9 +6,9 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 # 데이터 분할을 위한 함수
-def train_test_split(crop_kind, start_ymd, end_ymd, minmaxscaler=True):
+def get_train_test_datasets(path, crop_kind, start_ymd, end_ymd, minmaxscaler=True):
 
-    train_set = pd.read_csv(crop_kind + "_dataset.csv")
+    train_set = pd.read_csv(path + crop_kind + "_dataset.csv")
 
     train_set = train_set.set_index('년도')
 
@@ -38,11 +38,12 @@ def train_test_split(crop_kind, start_ymd, end_ymd, minmaxscaler=True):
 
     y_train, y_test = target.loc[start_ymd:end_ymd], target.loc[end_ymd + 1:]
 
-    return X_train, y_train, X_test, y_test
+    return X_train, X_test, y_train, y_test
 
 
 if __name__ == "__main__":
-    X_train, y_train, X_test, y_test = train_test_split("배추_가을", 2010, 2018)
+    path = ""
+    X_train, X_test, y_train, y_test = get_train_test_datasets(path, "배추_가을", 2010, 2018)
 
     print(X_train)
     print(y_train)
