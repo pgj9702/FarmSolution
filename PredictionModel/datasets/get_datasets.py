@@ -38,12 +38,12 @@ def get_train_test_datasets(path, crop_kind, start_ymd, end_ymd, minmaxscaler=Tr
 
     y_train, y_test = target.loc[start_ymd:end_ymd], target.loc[end_ymd + 1:]
 
-    return X_train, X_test, y_train, y_test
+    return X_train, X_test, y_train, y_test, min_max_scaler
 
 
 if __name__ == "__main__":
     path = ""
-    X_train, X_test, y_train, y_test = get_train_test_datasets(path, "배추_가을", 2010, 2018)
+    X_train, X_test, y_train, y_test = get_train_test_datasets(path, "복숭아_-", 2010, 2018)
 
     print(X_train)
     print(y_train)

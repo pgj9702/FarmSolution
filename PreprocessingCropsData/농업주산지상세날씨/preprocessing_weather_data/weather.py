@@ -33,8 +33,8 @@ def DayStatistics_to_csv_byCrop(serviceKey, PA_CROP_SPE_ID, file_name):
 
     # 2001년 1월 1일부터 2019년 12월 31일까지 반복하는 while 문
     for year in range(2001, 2020):
-        ST_YMD = "%s0101" % year
-        ED_YMD = "%s1231" % year
+        ST_YMD = "%d0101" % year
+        ED_YMD = "%d1231" % year
 
         # request 의 pageNo
         # 페이지 1로 초기화
@@ -109,8 +109,8 @@ def DayStatistics_to_csv_yearly(serviceKey, year, AREA_ID, PA_CROP_SPE_ID, file_
     pageNo = 1
 
     # request 의 시작일, 종료일
-    ST_YMD = "%s0101" % year
-    ED_YMD = "%s1231" % year
+    ST_YMD = "%d0101" % year
+    ED_YMD = "%d1231" % year
     year = int(year)
     Day_YMD = datetime.date(year, 1, 1)
 

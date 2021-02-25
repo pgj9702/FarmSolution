@@ -50,6 +50,8 @@ def preprocessing_datasets():
     for file in ['당근_-_면적.csv', '대파_-_면적.csv', '양배추_-_면적.csv', '마늘_-_면적.csv']:
         file_list.remove(file)
 
+    # 베추_겨울
+
     file_list = [file.split("_") for file in file_list]
 
     crop_list = [file[0] + "_" + file[1] for file in file_list]
@@ -156,6 +158,8 @@ def preprocessing_datasets():
             min_year = int((np.min(temp_df01["연월일"]))[:4])
 
             max_year = int((np.max(temp_df01["연월일"]))[:4])
+
+            print(region, min_year, "~", max_year)
 
             year_range = range(min_year, max_year + 1)
 
