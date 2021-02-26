@@ -109,7 +109,7 @@ if __name__ == "__main__":
         # lstm_model = lstm(X_train, y_train)
         # rnn_model= rnn(X_train, y_train)
         # decision_tree_model = decision_tree(X_train, y_train)
-        # elastic_net_model = elastic_net(X_train, y_train)
+        elastic_net_model = elastic_net(X_train, y_train)
         # extratreeclassifier_model = extratreeclassifier(X_train, y_train)
         # gradientboostingclassifier_model = gradientboostingclassifier(X_train, y_train)
         lasso_model = lasso(X_train, y_train)
@@ -125,7 +125,7 @@ if __name__ == "__main__":
             # "lstm": lstm_model,
             # "rnn": rnn_model,
             # "decision_tree": decision_tree_model,
-            # "elasticnet": elastic_net_model,
+            "elasticnet": elastic_net_model,
             # "extratreeclassifier": extratreeclassifier_model,
             # "gradientboostingclassifier": gradientboostingclassifier_model,
             "lasso": lasso_model,
