@@ -43,7 +43,7 @@ def get_train_test_datasets(path, crop_kind, start_ymd, end_ymd, minmaxscaler=Tr
 
 if __name__ == "__main__":
     path = ""
-    X_train, X_test, y_train, y_test = get_train_test_datasets(path, "복숭아_-", 2010, 2018)
+    X_train, X_test, y_train, y_test, min_max_scaler = get_train_test_datasets(path, "복숭아_-", 2010, 2018)
 
     print(X_train)
     print(y_train)
