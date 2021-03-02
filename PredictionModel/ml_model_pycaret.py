@@ -7,13 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/1683kVFm45F3pqMwEVuBa7TS3dtS8iL1c
 """
 
-!pip install pycaret
-
 #For Google Colab only
-from pycaret.utils import enable_colab 
-enable_colab()
+# from pycaret.utils import enable_colab
+# enable_colab()
 
-!git clone https://github.com/pgj9702/FarmSolution.git
 
 import pandas as pd
 import numpy as py
@@ -23,29 +20,60 @@ import pandas as pd
 import xml.etree.ElementTree as ET
 
 import sys
-sys.path.append('/content/FarmSolution/PredictionModel/datasets')
-print(sys.path)
+# sys.path.append('/content/FarmSolution/PredictionModel/datasets')
+# print(sys.path)
 
 import os
-result = os.system('get_datasets.py')
-
+# result = os.system('get_datasets.py')
+from sklearn.preprocessing import MinMaxScaler
+import matplotlib.pyplot as plt
 import pandas as pd
-gamgul_minmax = pd.read_csv('/content/FarmSolution/PredictionModel/datasets/minmax/감귤_-_dataset.csv')
-gamgul_minmax
+gamgul_minmax = pd.read_csv('datasets/minmax/감귤_-_dataset.csv')
+
+gamgul_minmax.set_index("년도", inplace=True)
+gamgul_minmax = gamgul_minmax.drop("지역 이름", axis=1)
+
+area_prod_df = gamgul_minmax.loc[:, ["면적", "생산량"]]
+
+min_max_scaler = MinMaxScaler()
+min_max_scaler.fit(area_prod_df)
+
+print(gamgul_minmax)
+
+gamgul_minmax.loc[:, ["면적", "생산량"]] = min_max_scaler.transform(area_prod_df)
+gamgul_minmax.columns = ["feature%d" % i for i in range(10) ]
+
+print(gamgul_minmax.columns)
+print(gamgul_minmax)
+# minmax 면적, 생산량
+
+start_ymd = 2001
+end_ymd = 2018
+
+train_df, test_df = gamgul_minmax.loc[start_ymd:end_ymd, :], gamgul_minmax.loc[end_ymd + 1:, :]
+
+train_df.reset_index(inplace=True, drop=True)
+test_df.reset_index(inplace=True, drop=True)
+
+print(train_df)
+print(train_df.dtypes)
 
 # setup the environment 
 # data=train, target='생신량'column is the target variable
 from pycaret.classification import *
 model = setup(
-    data=gamgul_minmax,
-    target='생산량'
+    data=train_df,
+    target='feature0'
 )
+
 
 # Train models and compare
 
 # compared_models 함수를 통해 15개의 기본 모델을 학습하고 성능을 비교할 수 있다.
 
-compare_models = compare_models()
+# compare_models = compare_models()
+
+print("test1")
 
 best_3 = compare_models(sort='AUC', n_select=3)
 
@@ -54,15 +82,17 @@ best_3 = compare_models(sort='AUC', n_select=3)
 # 하나의 매개 변수-> 문자열 입력으로 전달된 모델이름만 사용
 # k-겹 교차 검증 점수와 훈련된 모델 객체가 있는 table로 반환
 
+print("test2")
+
 adaboost = create_model('ada')
 
 # 파라미터 값
 
-adaboost.base_estimator_
+print(adaboost.base_estimator_)
 
 # 중요도 값
 
-adaboost.feature_importances_
+print(adaboost.feature_importances_)
 
 # tune_adaboost
 
@@ -88,7 +118,7 @@ blended = blend_models(estmator_list=best_3, fold=5, method='soft')
 # 구축된 앙상블 모델을 통해 예측
 # setup 환경에 이미 hold_out_set이 존재함 (holdout: train set test set 두 세트로 나누는 과정)
 
-pre_holdout = predict_modedl(blended)
+pre_holdout = predict_model(blended)
 
 # Re_training the model on whole data
 
@@ -135,13 +165,15 @@ interpret_model(xgboost, plot = 'correlation')
 interpret_model(xgboost, plot = 'reason', observation = 0)
 
 #  create a model
-rf = create_model(rf)
+rf = create_model('rf')
 
 # predict test / hold-out-dataset
 rf_holdout_pred = predict_model(rf)
 
-predictions = predict_model(rf, data = diabetes)
+predictions = predict_model(rf, data = test_df)
 
 # 모델 배포
 deploy_model(model = rf, model_name = 'model_aws', platform = 'aws',
              authentication = {'bucket' : 'pycaret-test'})
+
+plt.show()
