@@ -24,8 +24,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #한글 폰트 사용
-from matplotlib import font_manager,rc
-import matplotlib
+from matplotlib import font_manager, rc
 import matplotlib.pyplot as plt
 
 # 예측 모델의 score 를 그래프로 나타내어 파일로 저장

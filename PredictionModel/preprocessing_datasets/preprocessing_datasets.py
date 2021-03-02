@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 import os
 import datetime as dt
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import RobustScaler
 
 # 법정동 지역 코드에서 광역시도 코드만 csv 파일로 저장하는 함수
 def save_sido_csv():
@@ -42,7 +45,7 @@ def to_date_type(x):
     return dt.date(temp[0], temp[1], temp[2])
 
 
-def preprocessing_datasets():
+def preprocessing_datasets(scaler=None):
 
     file_list = os.listdir("../../PreprocessingCropsData/농작물생산조사/preprocessed_area_data")
 
@@ -63,6 +66,18 @@ def preprocessing_datasets():
 
     # 저장 경로 설정
     path_to_save = "../datasets/"
+
+    if scaler == "standard":
+        path_to_save = path_to_save + "standard/"
+
+    elif scaler == "robust":
+        path_to_save = path_to_save + "robust/"
+
+    elif scaler == "minmax":
+        path_to_save = path_to_save + "minmax/"
+
+    else:
+        path_to_save = path_to_save + "default/"
 
     # 광역시도 코드 DataFrame
     sido_code = pd.read_csv("광역시도 코드.csv")
@@ -88,9 +103,33 @@ def preprocessing_datasets():
 
         # print(weather_data.columns)
 
+        # , '태풍', '일교차', '일교차 10 이상', '한파 일 수', '폭염 일 수',
+
+        # scaler 적용
+
+        # scaler 를 적용할 columns
+
+        col_to_scale = ["일 평균상대습도", "일 평균기온", "일 평균풍속", "일 최고기온", "일 최저상대습도", "일 최저기온", "일 강수량", "일 누적일조시간"]
+        # scaler
+
+        if scaler == "standard":
+            standard_scaler = StandardScaler()
+            standard_scaler.fit(weather_data[col_to_scale])
+            weather_data[col_to_scale] = standard_scaler.transform(weather_data[col_to_scale])
+
+        elif scaler == "robust":
+            robust_scaler = RobustScaler()
+            robust_scaler.fit(weather_data[col_to_scale])
+            weather_data[col_to_scale] = robust_scaler.transform(weather_data[col_to_scale])
+
+        elif scaler == "minmax":
+            min_max_scaler = MinMaxScaler()
+            min_max_scaler.fit(weather_data[col_to_scale])
+            weather_data[col_to_scale] = min_max_scaler.transform(weather_data[col_to_scale])
+
+
         datasets_columns = ['지역 이름', '년도', '생산량', '면적', '일 평균기온', '일 최저기온', '일 최고기온', '일 평균풍속',
                             '일 평균상대습도', '일 최저상대습도', '일 강수량', '일 누적일조시간']
-        # , '태풍', '일교차', '일교차 10 이상', '한파 일 수', '폭염 일 수',
 
         # ********* 지역 통합 *********
 
@@ -257,7 +296,12 @@ if __name__ == "__main__":
     # 법정동코드에서 광역시도 코드만 정리하여 csv 파일롤 저장
     # save_sido_csv()
 
+    scalers = ["default", "standard", "robust", "minmax"]
+
     preprocessing_datasets()
+
+    for scaler in scalers:
+        preprocessing_datasets(scaler=scaler)
 
 
 
