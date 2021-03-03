@@ -89,6 +89,8 @@ def preprocessing_datasets(scaler=None):
 
     # print(sido_code)
 
+    crop_list =["양파_-", "복숭아_-", "포도_-", "고추_-"]
+
     for crop in crop_list:
 
         print(crop, "  data set ")

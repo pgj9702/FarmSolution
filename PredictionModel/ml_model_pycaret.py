@@ -30,6 +30,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 gamgul_minmax = pd.read_csv('datasets/minmax/감귤_-_dataset.csv')
 
+# test = gamgul_minmax
+# test = test.drop("지역 이름", axis=1)
+# test.columns = ["feature%d" % i for i in range(11) ]
+
 gamgul_minmax.set_index("년도", inplace=True)
 gamgul_minmax = gamgul_minmax.drop("지역 이름", axis=1)
 
@@ -38,13 +42,13 @@ area_prod_df = gamgul_minmax.loc[:, ["면적", "생산량"]]
 min_max_scaler = MinMaxScaler()
 min_max_scaler.fit(area_prod_df)
 
-print(gamgul_minmax)
+# print(gamgul_minmax)
 
 gamgul_minmax.loc[:, ["면적", "생산량"]] = min_max_scaler.transform(area_prod_df)
 gamgul_minmax.columns = ["feature%d" % i for i in range(10) ]
 
-print(gamgul_minmax.columns)
-print(gamgul_minmax)
+# print(gamgul_minmax.columns)
+# print(gamgul_minmax)
 # minmax 면적, 생산량
 
 start_ymd = 2001
@@ -55,17 +59,14 @@ train_df, test_df = gamgul_minmax.loc[start_ymd:end_ymd, :], gamgul_minmax.loc[e
 train_df.reset_index(inplace=True, drop=True)
 test_df.reset_index(inplace=True, drop=True)
 
-print(train_df)
-print(train_df.dtypes)
-
 # setup the environment 
 # data=train, target='생신량'column is the target variable
-from pycaret.classification import *
+from pycaret.regression import *
+# from pycaret.classification import *
 model = setup(
     data=train_df,
     target='feature0'
 )
-
 
 # Train models and compare
 
@@ -75,7 +76,13 @@ model = setup(
 
 print("test1")
 
-best_3 = compare_models(sort='AUC', n_select=3)
+best_3 = compare_models()
+print(best_3)
+
+lr = create_model("lr")
+tuned_lr = tune_model(lr)
+
+print(tuned_lr)
 
 # Create model
 
@@ -84,96 +91,96 @@ best_3 = compare_models(sort='AUC', n_select=3)
 
 print("test2")
 
-adaboost = create_model('ada')
+# adaboost = create_model('ada')
 
 # 파라미터 값
 
-print(adaboost.base_estimator_)
+# print(adaboost.base_estimator_)
 
 # 중요도 값
 
-print(adaboost.feature_importances_)
+# print(adaboost.feature_importances_)
 
 # tune_adaboost
 
 # 자동 튜닝 하이퍼 파라미터에 사용
 
-tune_adaboost = tune_model('ada')
-
-# ensemble_model
-
-# creating a decision tree model
-dt = create_model('dt')
-# ensembling a trained dt model
-dt_bagged = ensemble_model(dt)
-
-# Model Ensemble (모델 앙상블)
-
-# 학습된 3개의 모델을 앙상블 -> score최적화를 위해 확률 값을 예측 = soft
-
-blended = blend_models(estmator_list=best_3, fold=5, method='soft')
-
-# Prediction
-
-# 구축된 앙상블 모델을 통해 예측
-# setup 환경에 이미 hold_out_set이 존재함 (holdout: train set test set 두 세트로 나누는 과정)
-
-pre_holdout = predict_model(blended)
-
-# Re_training the model on whole data
-
-# train data를 train/validation으로 나눠서 학습한것을 전체 data에 학습
-
-final_model = finalize_model(blended)
-
-# plot_model
-
-# create a model
-adaboost = create_model('ada')
-
-# AUC plot
-plot_model(adaboost, plot = 'auc')
-
-# Decidion Boundary
-plot_model(adaboost, plot = 'bounary')
-
-# Precision Recall Curve
-plot_model(adaboost, plot = 'pr')
-
-# Validation Curve
-plot_model(adaboost, plot = 'vc')
-
-# 또는 evaluation_model함수를 사용하여 노트북 내의 사용자 인터페이스를 통해 플롯을 볼 수 있다
-
-evaluate_model(adaboost)
-
-# 모델 해석
-
-# 데이터의 관계가 비선형일때: 단순한 가우시안 모델보다 훨씬 더 나은 트리 기반 모델
-# BUT 트리기반 모델은 선형 모델과 같은 단순한 계수를 제공하지 않기 때문에 해석 가능성을 잃게된다
-
-# creat a model
-xgboost = create_model('xgboost')
-
-# summary plot
-interpret_model(xgboost)
-
-# correlation plot
-interpret_model(xgboost, plot = 'correlation')
-
-# reason plot
-interpret_model(xgboost, plot = 'reason', observation = 0)
-
-#  create a model
-rf = create_model('rf')
-
-# predict test / hold-out-dataset
-rf_holdout_pred = predict_model(rf)
-
-predictions = predict_model(rf, data = test_df)
-
-# 모델 배포
-deploy_model(model = rf, model_name = 'model_aws', platform = 'aws',
-             authentication = {'bucket' : 'pycaret-test'})
-
-plt.show()
+# tune_adaboost = tune_model('dt')
+#
+# # ensemble_model
+#
+# # creating a decision tree model
+# dt = create_model('dt')
+# # ensembling a trained dt model
+# dt_bagged = ensemble_model(dt)
+#
+# # Model Ensemble (모델 앙상블)
+#
+# # 학습된 3개의 모델을 앙상블 -> score최적화를 위해 확률 값을 예측 = soft
+#
+# blended = blend_models(estmator_list=best_3, fold=5, method='soft')
+#
+# # Prediction
+#
+# # 구축된 앙상블 모델을 통해 예측
+# # setup 환경에 이미 hold_out_set이 존재함 (holdout: train set test set 두 세트로 나누는 과정)
+#
+# pre_holdout = predict_model(blended)
+#
+# # Re_training the model on whole data
+#
+# # train data를 train/validation으로 나눠서 학습한것을 전체 data에 학습
+#
+# final_model = finalize_model(blended)
+#
+# # plot_model
+#
+# # create a model
+# adaboost = create_model('ada')
+#
+# # AUC plot
+# plot_model(adaboost, plot = 'auc')
+#
+# # Decidion Boundary
+# plot_model(adaboost, plot = 'bounary')
+#
+# # Precision Recall Curve
+# plot_model(adaboost, plot = 'pr')
+#
+# # Validation Curve
+# plot_model(adaboost, plot = 'vc')
+#
+# # 또는 evaluation_model함수를 사용하여 노트북 내의 사용자 인터페이스를 통해 플롯을 볼 수 있다
+#
+# evaluate_model(adaboost)
+#
+# # 모델 해석
+#
+# # 데이터의 관계가 비선형일때: 단순한 가우시안 모델보다 훨씬 더 나은 트리 기반 모델
+# # BUT 트리기반 모델은 선형 모델과 같은 단순한 계수를 제공하지 않기 때문에 해석 가능성을 잃게된다
+#
+# # creat a model
+# xgboost = create_model('xgboost')
+#
+# # summary plot
+# interpret_model(xgboost)
+#
+# # correlation plot
+# interpret_model(xgboost, plot = 'correlation')
+#
+# # reason plot
+# interpret_model(xgboost, plot = 'reason', observation = 0)
+#
+# #  create a model
+# rf = create_model('rf')
+#
+# # predict test / hold-out-dataset
+# rf_holdout_pred = predict_model(rf)
+#
+# predictions = predict_model(rf, data = test_df)
+#
+# # 모델 배포
+# deploy_model(model = rf, model_name = 'model_aws', platform = 'aws',
+#              authentication = {'bucket' : 'pycaret-test'})
+#
+# plt.show()

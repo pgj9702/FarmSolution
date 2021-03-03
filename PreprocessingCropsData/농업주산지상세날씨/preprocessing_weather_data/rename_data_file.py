@@ -15,7 +15,7 @@ def rename_file():
 
     for file, new_file in zip(file_names[:3], new_file_names[:3]):
         df = pd.read_csv(path + file)
-        df.to_csv(path + new_file)
+        df.to_csv(path + new_file, index=False)
 
     chili_dfs = []
 
@@ -26,7 +26,7 @@ def rename_file():
 
     chili_df.sort_values(by=["연월일"], inplace=True)
 
-    chili_df.to_csv(path + new_file_names[3])
+    chili_df.to_csv(path + new_file_names[3], index=False)
 
 
 if __name__ == "__main__":
