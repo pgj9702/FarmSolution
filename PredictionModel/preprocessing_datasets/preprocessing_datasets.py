@@ -89,8 +89,6 @@ def preprocessing_datasets(scaler=None):
 
     # print(sido_code)
 
-    crop_list =["양파_-", "복숭아_-", "포도_-", "고추_-"]
-
     for crop in crop_list:
 
         print(crop, "  data set ")
@@ -214,8 +212,16 @@ def preprocessing_datasets(scaler=None):
                 if str(year) not in region_prod_data.columns or str(year) not in region_area_data.columns:
                     continue
 
+
                 elif start_ymd in date_series.values and end_ymd in date_series.values:
                     # print("good")
+
+                    if start_ymd > end_ymd:
+                        if year == 2001:
+                            continue
+                        else:
+                            start_ymd = dt.date(year - 1, start_md.month, start_md.day)
+
                     temp_df02 = temp_df01[(date_series >= start_ymd) & (date_series <= end_ymd)]
 
                 else:
@@ -260,7 +266,7 @@ def preprocessing_datasets(scaler=None):
                 # 같은 날짜 여러 row 를 하나로 통합
                 temp_df02 = temp_df02.groupby(by=["연월일"], as_index=False).mean()
 
-
+                print(temp_df02)
                 # print("생산량 면적 확인")
                 # print(prod_data[prod_data["시도별"] == area][str(year)].values[0])
                 # print(area_data[prod_data["시도별"] == area][str(year)].values[0])

@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 # from .preprocessing_datasets.preprocessing_datasets import preprocessing_datasets
-
+import datetime as dt
 
 df = pd.read_csv("../PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/배추_가을_날씨.csv")
 
@@ -19,4 +19,10 @@ df_scaled = standard_scaler.fit_transform(df)
 
 print(df_scaled)
 
+date = dt.date(2000, 1, 1)
+
+print(date)
+
+date = date + dt.timedelta(days=364)
+print(date)
 
