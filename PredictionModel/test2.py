@@ -25,4 +25,3 @@ print(date)
 
 date = date + dt.timedelta(days=364)
 print(date)
-
