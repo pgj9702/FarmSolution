@@ -39,20 +39,17 @@ class ReadData:
 
 def func1():
 
-    # ReadData 클래스 객체 생성
-    read_data = ReadData()
-
     weather_info_path = "weather_data/"
     weather_info_file = "농업주산지상세날씨_일통계_2001.csv"
 
-    weather_df = read_data.read_csv(weather_info_path, weather_info_file)
+    weather_df = pd.read_csv(weather_info_path + weather_info_file, low_memory=False)
 
     print(weather_df.columns)
 
     for year in range(2019, 2020):
 
         weather_info_file = "testDaily%d.csv" % year
-        weather_df = read_data.read_csv(weather_info_path, weather_info_file)
+        weather_df = pd.read_csv(weather_info_path + weather_info_file, low_memory=False)
 
         # 1. 지역 이름
         # 지역 수 (중복 제거)
@@ -122,7 +119,7 @@ if __name__ == "__main__":
     error_list = []
 
     # 작물별 데이터 누락, 중복 검토
-    crops_df = pd.read_csv("작물목록.csv", encoding='cp949')
+    crops_df = pd.read_csv("작물목록.csv", encoding='cp949', low_memory=False)
 
     for crop_id, crop_name, crop_kind in zip(crops_df["작물별 특성 아이디"], crops_df["작물명"], crops_df["세부분류"]):
 
