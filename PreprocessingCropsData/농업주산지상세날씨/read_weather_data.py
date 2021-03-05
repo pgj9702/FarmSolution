@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
     for crop_id, crop_name, crop_kind in zip(crops_df["작물별 특성 아이디"], crops_df["작물명"], crops_df["세부분류"]):
 
-        file_name = "preprocessed_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
+        file_name = "preprocessed_crops_weather_data/%s_%s_날씨.csv" % (crop_name, crop_kind)
 
         crop_weather_df = pd.read_csv(file_name)
 

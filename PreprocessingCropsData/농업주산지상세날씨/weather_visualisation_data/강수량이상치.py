@@ -13,7 +13,7 @@ rc('font', family=font_name)
 # 음수 부호 설정
 rc('axes', unicode_minus=False)
 
-gamgul_df = pd.read_csv("../preprocessed_weather_data/감귤_-_날씨.csv")
+gamgul_df = pd.read_csv("../preprocessed_crops_weather_data/감귤_-_날씨.csv")
 jeju_df = gamgul_df[gamgul_df["지역 아이디"] == 5011000000]
 print(jeju_df)
 

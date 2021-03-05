@@ -15,7 +15,7 @@ plt.rc('font', family=font_name)
 # 음수 부호 설정
 plt.rc('axes', unicode_minus=False)
 
-df = pd.read_csv("../PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/배추_가을_날씨.csv")
+df = pd.read_csv("../PreprocessingCropsData/농업주산지상세날씨/preprocessed_crops_weather_data/배추_가을_날씨.csv")
 
 attributes = ["일 평균상대습도", "일 평균기온", "일 평균풍속", "일 최고기온", "일 최저상대습도", "일 최저기온", "일 강수량", "일 누적일조시간"]
 

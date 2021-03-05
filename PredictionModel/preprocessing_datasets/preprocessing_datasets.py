@@ -94,7 +94,7 @@ def preprocessing_datasets(scaler=None):
         print(crop, "  data set ")
 
         weather_data = pd.read_csv(
-            "../../PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/" + crop + "_날씨.csv")
+            "../../PreprocessingCropsData/농업주산지상세날씨/preprocessed_crops_weather_data/" + crop + "_날씨.csv")
 
         # 년-월-일 시:분:초 를 년-월-일 로 변경
         weather_data["연월일"] = weather_data["연월일"].str.split().str[0]
@@ -103,7 +103,7 @@ def preprocessing_datasets(scaler=None):
 
         # print(weather_data.columns)
 
-        # , '태풍', '일교차', '일교차 10 이상', '한파 일 수', '폭염 일 수',
+        # '태풍', '일교차', '일교차 10 이상', '한파 일 수', '폭염 일 수',
 
         # scaler 적용
 

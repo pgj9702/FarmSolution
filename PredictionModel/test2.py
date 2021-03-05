@@ -3,7 +3,7 @@ from sklearn.preprocessing import StandardScaler
 # from .preprocessing_datasets.preprocessing_datasets import preprocessing_datasets
 import datetime as dt
 
-df = pd.read_csv("../PreprocessingCropsData/농업주산지상세날씨/preprocessed_weather_data/배추_가을_날씨.csv")
+df = pd.read_csv("../PreprocessingCropsData/농업주산지상세날씨/preprocessed_crops_weather_data/배추_가을_날씨.csv")
 
 standard_scaler = StandardScaler()
 

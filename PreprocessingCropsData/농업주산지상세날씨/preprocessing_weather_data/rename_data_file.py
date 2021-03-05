@@ -11,7 +11,7 @@ def rename_file():
 
     new_file_names = ["포도_-_날씨.csv", "양파_-_날씨.csv", "복숭아_-_날씨.csv", "고추_-_날씨.csv"]
 
-    path = "../preprocessed_weather_data/"
+    path = "../preprocessed_crops_weather_data/"
 
     for file, new_file in zip(file_names[:3], new_file_names[:3]):
         df = pd.read_csv(path + file)
