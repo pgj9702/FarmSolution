@@ -13,7 +13,8 @@ def loc_crop(location_df:pd.DataFrame) -> (pd.DataFrame):
 
 if __name__ == "__main__":
 
-  input_path = "/content/FarmSolution/PredictionModel/datasets/default/"
+  input_path = "../농업주산지날씨/default/"
+
   location_input_file = "배추_가을_dataset.csv"
   location_df = pd.read_csv(input_path + location_input_file)
   location = loc_crop(location_df)
