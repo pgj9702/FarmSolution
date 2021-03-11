@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 
 def loc_crop(location_df:pd.DataFrame) -> (pd.DataFrame):
@@ -9,8 +10,6 @@ def loc_crop(location_df:pd.DataFrame) -> (pd.DataFrame):
   spe_loc = location.iloc[:4, :]
   print(spe_loc)
 
-import os
-import pandas as pd
 
 if __name__ == "__main__":
 
@@ -31,8 +30,6 @@ if __name__ == "__main__":
 
   # 최종 df
   crop_list_by_local = pd.DataFrame(columns=[year for year in range(2001, 2020)], index=local_list)
-
-  print
 
   # 모든 작물 datasets 통합
   crop_data_df = []
