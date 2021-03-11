@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>년도별 재배지 현황</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart3);
+
+      function drawChart1() {
+        var data1 = google.visualization.arrayToDataTable([
+          ['지역 이름', '생산량(kg)'],
+          ['서울특별시', 2310],
+          ['부산광역시', 40846],
+          ['대구광역시', 14450],
+          ['인천광역시', 17593],
+          ['광주광역시', 18538],
+          ['대전광역시', 7418],
+          ['울산광역시', 13274],
+          ['세종특별자치시', 0],
+          ['경기도', 231181],
+          ['강원도', 60499],
+          ['충청북도', 95298],
+          ['충청남도', 313150],
+          ['전라북도', 169445],
+          ['전라남도', 199653],
+          ['경상북도', 110229],
+          ['경상남도', 131366],
+          ['제주도', 21890]
+        ]);
+
+        var options1 = {
+          title: '2001년 배추_가을 재배지',
+          is3D: true,
+        };
+
+        var chart1 = new google.visualization.PieChart(document.getElementById('piechart_3d1'));
+        chart1.draw(data1, options1);
+      }
+
+      function drawChart2() {
+        var data2 = google.visualization.arrayToDataTable([
+          ['지역 이름', '생산량(kg)'],
+          ['서울특별시', 669],
+          ['부산광역시', 12005],
+          ['대구광역시', 9245],
+          ['인천광역시', 10613],
+          ['광주광역시', 5858],
+          ['대전광역시', 4171],
+          ['울산광역시', 12276],
+          ['세종특별자치시', 0],
+          ['경기도', 153864],
+          ['강원도', 56284],
+          ['충청북도', 98836],
+          ['충청남도', 182698],
+          ['전라북도', 142969],
+          ['전라남도', 269796],
+          ['경상북도', 114068],
+          ['경상남도', 97556],
+          ['제주도', 16933]
+        ]);
+
+        var options2 = {
+          title: '2010년 배추_가을 재배지',
+          is3D: true,
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart_3d2'));
+        chart2.draw(data2, options2);
+      }
+
+      function drawChart3() {
+        var data3 = google.visualization.arrayToDataTable([
+        // FarmSolution/PreprocessingCropsData/농작물생산조사/preprocessed_prod_data/배추_가을_생산량/합계
+          ['지역 이름', '생산량(kg)'],
+          ['서울특별시', 228],
+          ['부산광역시', 6267],
+          ['대구광역시', 6673],
+          ['인천광역시', 12720],
+          ['광주광역시', 6523],
+          ['대전광역시', 4230],
+          ['울산광역시', 6919],
+          ['세종특별자치시', 3017],
+          ['경기도', 111503],
+          ['강원도', 144285],
+          ['충청북도', 160309],
+          ['충청남도', 118033],
+          ['전라북도', 158193],
+          ['전라남도', 371543],
+          ['경상북도', 168201],
+          ['경상남도', 61098],
+          ['제주도', 0]
+        ]);
+
+        var options3 = {
+          title: '2020년 배추_가을 재배지',
+          is3D: true,
+        };
+
+        var chart3 = new google.visualization.PieChart(document.getElementById('piechart_3d3'));
+        chart3.draw(data3, options3);
+      }
+    </script>
+</head>
+<body>
+    <div id="piechart_3d1" style="width: 900px; height: 500px;"></div>
+    <div id="piechart_3d2" style="width: 900px; height: 500px;"></div>
+    <div id="piechart_3d3" style="width: 900px; height: 500px;"></div>
+</body>
+</html>

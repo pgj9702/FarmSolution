@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+        // FarmSolution/PreprocessingCropsData/농작물생산조사/preprocessed_prod_data/배추_가을_생산량/합계
+          ['year', '생산량(kg)'],
+          ['2001', 1447140],
+          ['2002', 1079219],
+          ['2003', 1156652],
+          ['2004', 1415161],
+          ['2005', 1114821],
+          ['2006', 1421858],
+          ['2007', 1138757],
+          ['2008', 1504639],
+          ['2009', 1582966],
+          ['2010', 1187840],
+          ['2011', 1896828],
+          ['2012', 1298084],
+          ['2013', 1535802],
+          ['2014', 1698463],
+          ['2015', 1436075],
+          ['2016', 1128121],
+          ['2017', 1362621],
+          ['2018', 1404150],
+          ['2019', 1059925],
+          ['2020', 1339742]
+        ]);
+
+        var options = {
+          width: 900,
+          chart: {
+            title: '년도별 작물 생산럄 (배추_가을)',
+            subtitle: '2001 - 2020(Year)'
+          },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          series: {
+            0: { axis: '2020' }, // Bind series 0 to an axis named 'distance'.
+          },
+          axes: {
+            x: {
+              2020: {label:''}, // Bottom x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+         var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+</head>
+<body>
+    <div id="top_x_div" style="width: 800px; height: 600px;"></div>
+</body>
+</html>
