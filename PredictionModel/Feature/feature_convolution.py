@@ -20,7 +20,7 @@ elif platform.system() == 'Windows':
 else:
     print('Unknown system... sorry~~~~~')
 
-data = pd.read_csv("../datasets/minmax/배추_가을_dataset.csv")
+data = pd.read_csv("../datasets/농업주산지날씨/minmax/배추_가을_dataset.csv")
 print(data)
 
 data.set_index("년도", inplace=True)

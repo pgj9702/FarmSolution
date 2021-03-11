@@ -3,7 +3,7 @@ import datetime as dt
 from machine_learning.LinearRegression import reg
 
 if __name__ == "__main__":
-    train_set = pd.read_csv("datasets/default/감귤_-_dataset.csv")
+    train_set = pd.read_csv("datasets/농업주산지날씨/default/감귤_-_dataset.csv")
 
     target = train_set["생산량"]
     

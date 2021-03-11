@@ -28,7 +28,7 @@ import os
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import pandas as pd
-gamgul_minmax = pd.read_csv('datasets/minmax/감귤_-_dataset.csv')
+gamgul_minmax = pd.read_csv('datasets/농업주산지날씨/minmax/감귤_-_dataset.csv')
 
 # test = gamgul_minmax
 # test = test.drop("지역 이름", axis=1)
