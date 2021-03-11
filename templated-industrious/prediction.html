@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['지역', '2001_생산량(kg)', '2020_생산량(kg)'],
+          ['서울특별시', 2310, 228],
+          ['부산광역시', 40846, 6267],
+          ['대구광역시', 14450, 6673],
+          ['인천광역시', 17593, 12720],
+          ['광주광역시', 18538, 6523],
+          ['대전광역시', 7418, 4230],
+          ['울산광역시', 13274, 6919],
+          ['세종특별자치시', 0, 3017],
+          ['경기도', 231181, 111503],
+          ['강원도', 60499, 144285],
+          ['충청북도', 95298, 160309],
+          ['충청남도', 313150, 118033],
+          ['전라북도', 169445, 158193],
+          ['전라남도', 199653, 371543],
+          ['경상북도', 110229, 168201],
+          ['경상남도', 131366, 61098],
+          ['제주도', 21890, 0]
+        ]);
+
+        var options = {
+          width: 900,
+          chart: {
+            title: '작물별 생산지의 생산 정보 (배추_가을)',
+            subtitle: '2020(Year)'
+          },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          series: {
+            0: { axis: '2001' }, // Bind series 0 to an axis named 'distance'.
+            1: { axis: '2020' } // Bind series 1 to an axis named 'brightness'.
+          },
+          axes: {하남풍산역 5호선내대지건영캐스빌아파트
+            x: {
+              2001: {label:''}, // Bottom x-axis.
+              2020: {side: 'top', label: ''} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+         var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+</head>
+<body>
+    <div id="top_x_div" style="width: 800px; height: 600px;"></div>
+</body>
+</html>
