@@ -200,10 +200,10 @@ if __name__ == "__main__":
     # serviceKey, getWthrDataList, file_name
     serviceKey = "p3RjGK2spO6S8g%2Bc7oh4wF2EbfQBUbljSP1wLcCY%2BbfQBwQDSWqMFjgmnBlfSeNTRk9%2Fa5peMnYbRNvXMqSGtQ%3D%3D"
 
-    start_ymd = "20010101"
-    end_ymd = "20191231"
+    start_year = 2001
+    end_year = 2020
 
-    file_name = "../weather_data/일기상자료_" + start_ymd + "_" + end_ymd + ".csv"
+    file_name = "../weather_data/일기상자료_" + str(start_year) + "_" + str(end_year) + ".csv"
 
     # OutlierStatistics_to_csv(serviceKey, file_name, start_ymd, end_ymd)
 
@@ -212,12 +212,9 @@ if __name__ == "__main__":
 
     station_code = station_code_csv["지점"]
 
-    for s_code in station_code[:]:
+    for s_code in station_code[41:]:
         # file_name 설정
         station_name = station_code_csv.loc[station_code_csv["지점"] == s_code, "지점명"].values[0]
-
-        start_year = 2001
-        end_year = 2019
 
         print(station_code_csv[station_code_csv["지점"] == s_code].index)
 
