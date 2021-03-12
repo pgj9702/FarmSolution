@@ -52,6 +52,8 @@ def typhoon():
                         col_count += 1
 
         print(df)
+        
+        # 2018 년도는 직접 작성해야함
 
         df = df.replace(" ", "")
         #df = df.replace("\xa0", "")
