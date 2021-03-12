@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import os
-import re
 import datetime as dt
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
@@ -54,7 +53,7 @@ def set_datasets(scaler=None):
         '가조시간', '평균 일조 시간', '1시간 최다 일사량 평균', '평균 일 합계 일사', '일 최심신적설', '일 최심적설',
         '지면온도', '최저 초상온도', '5cm 지중온도', '10cm 지중온도', '20cm 지중온도', '30cm 지중온도',
         '0.5m 지중온도', '1.0m 지중온도', '1.5m 지중온도', '3.0m 지중온도', '5.0m 지중온도',
-        '평균 일교차', '일교차 15이상인 날', '태풍 수', '영향을 준 태풍 수'
+        '평균 일교차', '일교차 15이상인 날', '태풍 수', '영향을 준 태풍 수', "한파일 수", "폭염일 수"
     ]
 
     # 구간 별 통계 : '평균 기온', '최저 기온', '최고 기온, '일 강수량 평균', '강수량 합계', '평균 상대습도', '합계 일조 시간',
@@ -208,22 +207,65 @@ def set_datasets(scaler=None):
 
                 # 한파
                 # 10월~4월 동안 다음 어느 하나에 해당하는 경우
-                # ① 아침 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하이고 평년값보다 3℃가 낮을 것으로 예상될 때
-                # ② 아침 최저기온이 -12℃ 이하가 2일 이상 지속될 것으로 예상될 때
-                # ③ 급격한 저온현상으로 중대한 피해가 예상될 때
+                # 1. 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하인 경우
+                # 2. 최저기온이 -12℃ 이하가 2일 이상 지속될 것으로 예상될 때
+
+                cw_section01 = daily_waether[(date_series >= dt.date(s_year, 1, 1)) &
+                              (date_series < dt.date(s_year, 5, 1))]["최저 기온"]
+
+                cw_section01 = cw_section01[cw_section01 <= 3.0]
+
+                cw_section01_eve = daily_waether.iloc[cw_section01.index - 1]["최저 기온"]
+
+                cw_section01.reset_index(inplace=True, drop=True)
+                cw_section01_eve.reset_index(inplace=True, drop=True)
+
+                cw_section02 = daily_waether[(date_series >= dt.date(s_year, 10, 1)) &
+                              (date_series < dt.date(s_year + 1, 1, 1))]["최저 기온"]
+
+                cw_section02 = cw_section02[cw_section02 <= 3.0]
+
+                cw_section02_eve = daily_waether.iloc[cw_section02.index - 1]["최저 기온"]
+
+                cw_section02.reset_index(inplace=True, drop=True)
+                cw_section02_eve.reset_index(inplace=True, drop=True)
+                
+
+                # 12도 이하가 2일 유지되거나 3도 이하이면서 전날보다 10도 이상 하강한 경우
+                # 1월부터 4월까지
+                cold_continuing01 = pd.DataFrame([cw_section01 <= -12.0, cw_section01_eve <= -12.0]).all()
+                # 10월부터 12월까지
+                cold_continuing02 = pd.DataFrame([cw_section02 <= -12.0, cw_section02_eve <= -12.0]).all()
+
+                # 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하일 때
+                # 두 조건 중 하나만 만족하는 날
+                # 1월부터 4월까지
+                section01_list = pd.DataFrame([cold_continuing01, (cw_section01 - cw_section01_eve <= -10.0)]).any()
+
+                # 10월부터 12월까지
+                section02_list = pd.DataFrame([cold_continuing02, (cw_section02 - cw_section02_eve <= -10.0)]).any()
+
+                # 한파 일수 cold_wave
+                count_cold_wave = section01_list.sum() + section02_list.sum()
 
                 # 폭염
-                # 일최고기온이 33℃ 이상인 상태가 2일 이상 지속될 것으로 예상될 때
+                # 최고기온이 33℃ 이상인 상태가 2일 이상 지속될 것으로 예상될 때
+                hw_section01 = daily_waether[(date_series >= start_ymd) &
+                                          (date_series <= end_ymd)]["최고 기온"]
+
+                hw_section01_eve = daily_waether.iloc[hw_section01.index - 1]["최저 기온"]
+
+                hw_section01.reset_index(inplace=True, drop=True)
+                hw_section01_eve.reset_index(inplace=True, drop=True)
+
+                # 폭염 일 수 count_heat_wave
+                count_heat_wave = pd.DataFrame([(hw_section01 >= 33.0), (hw_section01_eve >= 33.0)]).all().sum()
 
                 # 일교차
                 daily_tp_range = temp_df01["최고 기온"] - temp_df01["최저 기온"]
 
                 # 일교차가 15 도 이상인 날 수
                 daily_tp_range_over_10 = (daily_tp_range > 15).sum()
-
-                # 한파 일 수
-
-                # 폭염 일 수
 
                 # 태풍 개수
                 typhoon_in_year = typhoon_df.loc[year, start_md[0]:end_md[0]].sum()
@@ -237,14 +279,9 @@ def set_datasets(scaler=None):
                 values_of_new_row.insert(9, temp_df01["일강수량"].sum())
 
                 values_of_new_row = values_of_new_row + [
-                    daily_tp_range.mean(), daily_tp_range_over_10, typhoon_in_year, impact_typhoon_in_year]
-
-
-                # temp_df02['태풍'].mean(),
-                # temp_df02['일교차'].mean(),
-                # temp_df02['일교차 10 이상'].mean(),
-                # temp_df02['한파 일 수'].mean(),
-                # temp_df02['폭염 일 수'].mean()
+                    daily_tp_range.mean(), daily_tp_range_over_10, typhoon_in_year, impact_typhoon_in_year,
+                    count_cold_wave, count_heat_wave
+                ]
 
                 new_row = {key: value for key, value in zip(datasets_columns, values_of_new_row)}
 
@@ -267,42 +304,9 @@ def sort_dataset_by_year(dir_path):
 
 
 if __name__ == "__main__":
-    # 법정동코드에서 광역시도 코드만 정리하여 csv 파일롤 저장
-    # save_sido_csv()
 
     scalers = ["default", "standard", "robust", "minmax"]
 
     # set_datasets()
 
-    sort_dataset_by_year("../datasets/종관기상관측/default/")
-
-    # for scaler in scalers:
-    #     preprocessing_datasets(scaler=scaler)
-
-    # temp_df["연월일"]
-    #
-    # for i, v in date_series.items():
-    #     print(i, type(v))
-    #
-    # print(pd.to_datetime(start_md))
-    # print(pd.to_datetime(end_md))
-
-    # print(pd.to_datetime(temp_df["연월일"])[7113])
-    # print(pd.to_datetime(temp_df["연월일"])[7113] + pd.to_timedelta("1 days"))
-
-    # year_list = list(set(temp_df["연월일"].str.split("-").str[0]))
-    #
-    # year_list.sort()
-    #
-    # print(year_list)
-
-    # for year in year_list:
-    #     print(year)
-
-    # '지역 이름', '년도', '일 최저기온', '일 평균기온', '일 최고기온', '일 평균풍속', '일 평균상대습도', '일 최저상대습도', '일 강수량', '일 누적일조시간', '한파 일 수', '폭염 일 수'
-
-    # values_of_new_row = [area, ]
-    #
-    # new_row = {key: value for key, value in zip(datasets_columns, values_of_new_row)}
-    #
-    # final_df.append(new_row, ignore_index=True)
+    # sort_dataset_by_year("../datasets/종관기상관측/default/")
