@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import os
+import re
 import datetime as dt
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
@@ -47,12 +48,13 @@ def set_datasets(scaler=None):
     save_files = [crop + "_dataset.csv" for crop in crop_list]
 
     datasets_columns = [
-        '지역', '시간', '평균 기온', '최저 기온', '최고 기온',
+        '지역', '년도', '생산량', '면적', '평균 기온', '최저 기온', '최고 기온',
         '1시간 최다강수량', '일 강수량 평균', '강수량 합계', '최대 순간풍속', '최대 풍속', '평균 풍속',
         '풍정합', '평균 이슬점온도', '최소 상대습도', '평균 상대습도', '평균 증기압', '평균 현지기압',
-        '가조시간', '합계 일조 시간', '1시간 최다 일사량', '합계 일사', '일 최심신적설', '일 최심적설',
-        '평균 지면온도', '최저 초상온도', '평균 5cm 지중온도', '평균10cm 지중온도', '평균 20cm 지중온도', '평균 30cm 지중온도',
-        '0.5m 지중온도', '1.0m 지중온도', '1.5m 지중온도', '3.0m 지중온도', '5.0m 지중온도'
+        '가조시간', '평균 일조 시간', '1시간 최다 일사량 평균', '평균 일 합계 일사', '일 최심신적설', '일 최심적설',
+        '지면온도', '최저 초상온도', '5cm 지중온도', '10cm 지중온도', '20cm 지중온도', '30cm 지중온도',
+        '0.5m 지중온도', '1.0m 지중온도', '1.5m 지중온도', '3.0m 지중온도', '5.0m 지중온도',
+        '평균 일교차', '일교차 15이상인 날', '태풍 수', '영향을 준 태풍 수'
     ]
 
     # 구간 별 통계 : '평균 기온', '최저 기온', '최고 기온, '일 강수량 평균', '강수량 합계', '평균 상대습도', '합계 일조 시간',
@@ -68,6 +70,41 @@ def set_datasets(scaler=None):
     # int 형인 법정동코드를 str 형으로 바꾸어 날씨 데이터의 지역 코드와 광역시도 데이터의 지역 코드의 맨 앞 2자리를 비교하여
     # 지역 이름을 광역시도 이름으로 바꿈
     # ex) 강남구 -> 서울, 중구 -> 서울
+
+    # 태풍 DataFrame
+    typhoon_df = pd.read_csv("../../PreprocessingCropsData/농업주산지상세날씨/typhoon/typhoon.csv")
+
+    typhoon_df.fillna(0, inplace=True)
+    typhoon_df.set_index("연월일", inplace=True)
+
+    # 괄호 안의 숫자는 우리나라에 영향을 크게 미친 태풍 수
+    # print(typhoon_df)
+
+    typhoon_df.fillna(0, inplace=True)
+
+    typhoon_df = typhoon_df.loc["2001":"2020", :]
+
+    typhoon_df = typhoon_df.astype(str)
+
+    typhoon_df = typhoon_df.apply(lambda x: x.str.replace(".0", "", regex=False))
+
+    impact_typhoon_df = typhoon_df.apply(lambda x: x.str.split("(").str[1])
+
+    impact_typhoon_df.fillna(0, inplace=True)
+
+    impact_typhoon_df = impact_typhoon_df.astype(str)
+
+    impact_typhoon_df = impact_typhoon_df.apply(lambda x: x.str.replace(")", "", regex=False))
+
+    impact_typhoon_df = impact_typhoon_df.apply(lambda x: x.str.replace(".0", "", regex=False))
+
+    typhoon_df = typhoon_df.apply(lambda x: x.str.split("(").str[0])
+
+    # 태풍 개수
+    typhoon_df = typhoon_df.astype(int)
+
+    # 영향을 크게 미친 태풍 개수
+    impact_typhoon_df = impact_typhoon_df.astype(int)
 
     for sido, station in zip(station_by_sido["시도"], station_by_sido["지점"]):
 
@@ -89,18 +126,40 @@ def set_datasets(scaler=None):
         weather_df.sort_values(by=["시간"], inplace=True, ignore_index=True)
 
         # 같은 날짜 별로 그룹화 후 평균
-        weather_df_mean = weather_df.groupby(by=["시간"], as_index=False).mean()
+        daily_waether = weather_df.groupby(by=["시간"], as_index=False).mean()
+
+        # str 타입의 날짜를 datetime.date 으로 변환한 Series
+        date_series = daily_waether["시간"].apply(to_date_type)
+
+        col_list_of_wth = daily_waether.columns
 
         # print(weather_df)
 
         for crop in crop_list:
             # 작물 생산량 데이터
-            crop_prod_data = pd.read_csv("../../PreprocessingCropsData/농작물생산조사/preprocessed_prod_data/" + crop + "_생산량.csv")
-    
+            crop_prod_data = pd.read_csv(
+                "../../PreprocessingCropsData/농작물생산조사/preprocessed_prod_data/" + crop + "_생산량.csv")
+            crop_prod_data.set_index("시도별", inplace=True)
+
             # 작물 면적 데이터
-            crop_area_data = pd.read_csv("../../PreprocessingCropsData/농작물생산조사/preprocessed_area_data/" + crop + "_면적.csv")
-            
+            crop_area_data = pd.read_csv(
+                "../../PreprocessingCropsData/농작물생산조사/preprocessed_area_data/" + crop + "_면적.csv")
+            crop_area_data.set_index("시도별", inplace=True)
+
             for year in range(2001, 2020):
+                str_year = str(year)
+
+                # 생산량 정보
+                if str_year not in crop_prod_data.columns:
+                    print("continue")
+                    continue
+
+                # sido 의 year 해의 생산량이나 면적이 0이면 continue
+                prod_of_sido_in_year = crop_prod_data.at[sido, str_year]
+                area_of_sido_in_year = crop_area_data.at[sido, str_year]
+
+                if prod_of_sido_in_year == 0 or area_of_sido_in_year == 0:
+                    continue
 
                 # 작물별 생육 기간
                 crop_growing_period = growing_period[(growing_period["품목"] == crop.split("_")[0])
@@ -113,224 +172,39 @@ def set_datasets(scaler=None):
                 print(start_md, end_md)
 
                 if start_md[0] != "":
-                    s_year, s_month, s_day = 2000, int(start_md[0]), int(start_md[1])
+                    s_year, s_month, s_day = year, int(start_md[0]), int(start_md[1])
                 else:
-                    s_year, s_month, s_day = 2000, 1, 1
+                    s_year, s_month, s_day = year, 1, 1
 
-                e_year, e_month, e_day = 2000, int(end_md[0]), int(end_md[1])
+                e_year, e_month, e_day = year, int(end_md[0]), int(end_md[1])
 
-                start_md = dt.date(s_year, s_month, s_day)
-                end_md = dt.date(e_year, e_month, e_day)
+                start_ymd = dt.date(s_year, s_month, s_day)
+                end_ymd = dt.date(e_year, e_month, e_day)
 
-                final_df = pd.DataFrame(columns=datasets_columns)
+                if start_ymd > end_ymd:
+                    if year == 2001:
+                        continue
+                    else:
+                        start_ymd = dt.date(year - 1, start_ymd.month, start_ymd.day)
 
-                region_list = preprocessing_df["지역 이름"].unique()
+                temp_df01 = daily_waether[(date_series >= start_ymd) &
+                                          (date_series <= end_ymd)]
 
-                print(weather_df_mean)
                 # print("생산량 면적 확인")
                 # print(prod_data[prod_data["시도별"] == area][str(year)].values[0])
                 # print(area_data[prod_data["시도별"] == area][str(year)].values[0])
-                a = ['시간', '평균 기온', '최저 기온', '최고 기온', '1시간 최다강수량', '일강수량', '최대 순간풍속',
-       '최대 풍속', '평균 풍속', '풍정합', '평균 이슬점온도', '최소 상대습도', '평균 상대습도', '평균 증기압',
-       '평균 현지기압', '가조시간', '합계 일조 시간', '1시간 최다 일사량', '합계 일사', '일 최심신적설',
-       '일 최심적설', '평균 지면온도', '최저 초상온도', '평균 5cm 지중온도', '평균10cm 지중온도',
-       '평균 20cm 지중온도', '평균 30cm 지중온도', '0.5m 지중온도', '1.0m 지중온도', '1.5m 지중온도',
-       '3.0m 지중온도', '5.0m 지중온도']
 
-                datasets_columns = [
-                    '지역', '시간', '평균 기온', '최저 기온', '최고 기온',
-                    '1시간 최다강수량', '일 강수량 평균', '강수량 합계', '최대 순간풍속', '최대 풍속', '평균 풍속',
-                    '풍정합', '평균 이슬점온도', '최소 상대습도', '평균 상대습도', '평균 증기압', '평균 현지기압',
-                    '가조시간', '합계 일조 시간', '1시간 최다 일사량', '합계 일사', '일 최심신적설', '일 최심적설',
-                    '평균 지면온도', '최저 초상온도', '평균 5cm 지중온도', '평균10cm 지중온도', '평균 20cm 지중온도', '평균 30cm 지중온도',
-                    '0.5m 지중온도', '1.0m 지중온도', '1.5m 지중온도', '3.0m 지중온도', '5.0m 지중온도'
-                ]
+                # print(col_list_of_wth)
 
-                values_of_new_row = [sido, year,
-                                     crop_prod_data[str(year)].values[0],
-                                     crop_area_data[str(year)].values[0],
-                                     temp_df02['일 평균기온'].mean(),
-                                     temp_df02['일 최저기온'].mean(),
-                                     temp_df02['일 최고기온'].mean(),
-                                     temp_df02['일 평균풍속'].mean(),
-                                     temp_df02['일 평균상대습도'].mean(),
-                                     temp_df02['일 최저상대습도'].mean(),
-                                     temp_df02['일 강수량'].mean(),
-                                     temp_df02['일 누적일조시간'].mean()
-    
-                                     # temp_df02['태풍'].mean(),
-                                     # temp_df02['일교차'].mean(),
-                                     # temp_df02['일교차 10 이상'].mean(),
-                                     # temp_df02['한파 일 수'].mean(),
-                                     # temp_df02['폭염 일 수'].mean()
-                                     ]
-    
-                new_row = {key: value for key, value in zip(datasets_columns, values_of_new_row)}
-
-                # excel 파일에 이어서 저장
-                new_row.to_csv(path_to_save + crop + "_dataset.csv", mode="a", header=False,
-                                index=False, encoding="utf-8-sig")
-            
-
-
-
-    for crop in crop_list:
-
-        print(crop, "  data set ")
-
-        weather_data = pd.read_csv(
-            "../../PreprocessingCropsData/농업주산지상세날씨/preprocessed_crops_weather_data/일기상자료" + crop + "_날씨.csv")
-
-        # 년-월-일 시:분:초 를 년-월-일 로 변경
-        weather_data["연월일"] = weather_data["연월일"].str.split().str[0]
-
-        # print(weather_data)
-
-        # print(weather_data.columns)
-
-        # '태풍', '일교차', '일교차 10 이상', '한파 일 수', '폭염 일 수',
-
-        # scaler 적용
-
-        # scaler 를 적용할 columns
-
-        col_to_scale = ["일 평균상대습도", "일 평균기온", "일 평균풍속", "일 최고기온", "일 최저상대습도", "일 최저기온", "일 강수량", "일 누적일조시간"]
-        # scaler
-
-        if scaler == "standard":
-            standard_scaler = StandardScaler()
-            standard_scaler.fit(weather_data[col_to_scale])
-            weather_data[col_to_scale] = standard_scaler.transform(weather_data[col_to_scale])
-
-        elif scaler == "robust":
-            robust_scaler = RobustScaler()
-            robust_scaler.fit(weather_data[col_to_scale])
-            weather_data[col_to_scale] = robust_scaler.transform(weather_data[col_to_scale])
-
-        elif scaler == "minmax":
-            min_max_scaler = MinMaxScaler()
-            min_max_scaler.fit(weather_data[col_to_scale])
-            weather_data[col_to_scale] = min_max_scaler.transform(weather_data[col_to_scale])
-
-        datasets_columns = ['지역 이름', '년도', '생산량', '면적', '일 평균기온', '일 최저기온', '일 최고기온', '일 평균풍속',
-                            '일 평균상대습도', '일 최저상대습도', '일 강수량', '일 누적일조시간']
-
-        # ********* 지역 통합 *********
-
-        preprocessing_df = weather_data.copy()
-
-        preprocessing_df = preprocessing_df.drop(['작물 명', '작물별 특성아이디', '작물별 특성 이름', '특보 코드', '특보 발효 여부'], axis=1)
-
-        preprocessing_df["지역 아이디"] = preprocessing_df["지역 아이디"].astype("str")
-
-        # preprocessed_df['지역 이름'] = preprocessed_df[preprocessed_df["지역 아이디"].str[:2].contain()]
-
-        preprocessing_df['지역 이름'] = [list(sido_code[sido_code["법정동코드"] == row["지역 아이디"][:2]]["법정동명"])[0]
-                                     if row["지역 아이디"][:2] in sido_code["법정동코드"].values
-                                     else "세종특별자치시"
-        if row["지역 아이디"][:4] == sido_code[sido_code["법정동명"] == "세종특별자치시"]["법정동코드"].values[0]
-        else None
-                                     for _, row in preprocessing_df.iterrows()]
-
-        preprocessing_df.drop("지역 아이디", axis=1, inplace=True)
-
-        # print(preprocessing_df)
-
-        # ********* 날짜 통합 *********
-
-        # print(growing_period)
-
-        # 작물별 생육 기간
-        crop_growing_period = growing_period[(growing_period["품목"] == crop.split("_")[0])
-                                             & (growing_period["품종"] == crop.split("_")[1])]
-
-        start_md = crop_growing_period["생육시작"].values[0].split("-")
-        end_md = crop_growing_period["생육종료"].values[0].split("-")
-
-        if start_md[0] != "":
-            s_year, s_month, s_day = 2000, int(start_md[0]), int(start_md[1])
-        else:
-            s_year, s_month, s_day = 2000, 1, 1
-
-        e_year, e_month, e_day = 2000, int(end_md[0]), int(end_md[1])
-
-        start_md = dt.date(s_year, s_month, s_day)
-        end_md = dt.date(e_year, e_month, e_day)
-
-        final_df = pd.DataFrame(columns=datasets_columns)
-
-        region_list = preprocessing_df["지역 이름"].unique()
-
-        # 생산량, 면적 csv 파일 읽기
-
-        prod_data = pd.read_csv("../../PreprocessingCropsData/농작물생산조사/preprocessed_prod_data/" + crop + "_생산량.csv")
-        area_data = pd.read_csv("../../PreprocessingCropsData/농작물생산조사/preprocessed_area_data/" + crop + "_면적.csv")
-
-        # print(prod_data)
-        # print(prod_data.columns)
-        # print(area_data)
-        # print(area_data.columns)
-
-        for region in region_list:
-            temp_df01 = preprocessing_df[preprocessing_df["지역 이름"] == region]
-            # print(temp_df01)
-
-            # 특정 지역의
-            date_series = temp_df01["연월일"].apply(to_date_type)
-
-            min_year = int((np.min(temp_df01["연월일"]))[:4])
-
-            max_year = int((np.max(temp_df01["연월일"]))[:4])
-
-            print(region, min_year, "~", max_year)
-
-            year_range = range(min_year, max_year + 1)
-
-            for year in year_range:
-                start_ymd = dt.date(year, start_md.month, start_md.day)
-                end_ymd = dt.date(year, end_md.month, end_md.day)
-
-                region_prod_data = prod_data[prod_data["시도별"] == region]
-                region_area_data = area_data[area_data["시도별"] == region]
-
-                if str(year) not in region_prod_data.columns or str(year) not in region_area_data.columns:
-                    continue
-
-
-                elif start_ymd in date_series.values and end_ymd in date_series.values:
-                    # print("good")
-
-                    if start_ymd > end_ymd:
-                        if year == 2001:
-                            continue
-                        else:
-                            start_ymd = dt.date(year - 1, start_md.month, start_md.day)
-
-                    temp_df02 = temp_df01[(date_series >= start_ymd) & (date_series <= end_ymd)]
-
-                else:
-                    # print("break")
-                    # print(start_ymd, end_ymd)
-                    # print(date_series.values[0], date_series.values[len(date_series)-1])
-
-                    # 다음 year 로 넘어감
-                    continue
-
-                # print(date_in_growing_period, len(date_in_growing_period))
-                #
-                # print(start_ymd, end_ymd)
-                #
-                # print("일 수 :", end_ymd - start_ymd + dt.timedelta(days=1))
-
-                # temp_df01.columns
-
-                # ['지역 이름', '년도', '생산량', '면적', '일 평균기온', '일 최저기온', '일 최고기온', '일 평균풍속', '일 평균상대습도',
-                # '일 최저상대습도', '일 강수량', '일 누적일조시간', '태풍', '일교차', '일교차 10 이상', '한파 일 수', '폭염 일 수']
-
-                # datasets_columns
-                # '지역 이름', '년도', '일 평균기온', '일 최저기온', '일 최고기온', '일 평균풍속', '일 평균상대습도',
-                # '일 최저상대습도', '일 강수량', '일 누적일조시간', '한파 일 수', '폭염 일 수'
-                # 추가할 col : 태풍 수, 일교차(하루 최고 기온과 최저 기온 차, 일교차가 큰 날)?
+                # datasets_columns = [
+                #     '지역', '년도', '생산량', '면적', '평균 기온', '최저 기온', '최고 기온',
+                #     '1시간 최다강수량', '일 강수량 평균', '강수량 합계', '최대 순간풍속', '최대 풍속', '평균 풍속',
+                #     '풍정합', '평균 이슬점온도', '최소 상대습도', '평균 상대습도', '평균 증기압', '평균 현지기압',
+                #     '가조시간', '평균 일조 시간', '1시간 최다 일사량 평균', '평균 일 합계 일사', '일 최심신적설', '일 최심적설',
+                #     '지면온도', '최저 초상온도', '5cm 지중온도', '10cm 지중온도', '20cm 지중온도', '30cm 지중온도',
+                #     '0.5m 지중온도', '1.0m 지중온도', '1.5m 지중온도', '3.0m 지중온도', '5.0m 지중온도',
+                #     '평균 일교차', '일교차 15이상인 날', '태풍 수', '영향을 준 태풍 수'
+                # ]
 
                 # 한파
                 # 10월~4월 동안 다음 어느 하나에 해당하는 경우
@@ -341,88 +215,94 @@ def set_datasets(scaler=None):
                 # 폭염
                 # 일최고기온이 33℃ 이상인 상태가 2일 이상 지속될 것으로 예상될 때
 
-                # 한파
-                # cold_wave = ??
+                # 일교차
+                daily_tp_range = temp_df01["최고 기온"] - temp_df01["최저 기온"]
 
-                # 폭염
-                # heat_wave = ??
+                # 일교차가 15 도 이상인 날 수
+                daily_tp_range_over_10 = (daily_tp_range > 15).sum()
 
-                # 같은 날짜 여러 row 를 하나로 통합
-                temp_df02 = temp_df02.groupby(by=["연월일"], as_index=False).mean()
+                # 한파 일 수
 
-                print(temp_df02)
-                # print("생산량 면적 확인")
-                # print(prod_data[prod_data["시도별"] == area][str(year)].values[0])
-                # print(area_data[prod_data["시도별"] == area][str(year)].values[0])
+                # 폭염 일 수
 
-                values_of_new_row = [region, year,
-                                     region_prod_data[str(year)].values[0],
-                                     region_area_data[str(year)].values[0],
-                                     temp_df02['일 평균기온'].mean(),
-                                     temp_df02['일 최저기온'].mean(),
-                                     temp_df02['일 최고기온'].mean(),
-                                     temp_df02['일 평균풍속'].mean(),
-                                     temp_df02['일 평균상대습도'].mean(),
-                                     temp_df02['일 최저상대습도'].mean(),
-                                     temp_df02['일 강수량'].mean(),
-                                     temp_df02['일 누적일조시간'].mean()
+                # 태풍 개수
+                typhoon_in_year = typhoon_df.loc[year, start_md[0]:end_md[0]].sum()
 
-                                     # temp_df02['태풍'].mean(),
-                                     # temp_df02['일교차'].mean(),
-                                     # temp_df02['일교차 10 이상'].mean(),
-                                     # temp_df02['한파 일 수'].mean(),
-                                     # temp_df02['폭염 일 수'].mean()
-                                     ]
+                # 영향을 크게 미친 태풍 개수
+                impact_typhoon_in_year = impact_typhoon_df.loc[year, start_md[0]:end_md[0]].sum()
+
+                values_of_new_row = [sido, str_year, prod_of_sido_in_year, area_of_sido_in_year] + \
+                                    [temp_df01[col].mean() for col in col_list_of_wth[1:]]
+                # 강수량 합계
+                values_of_new_row.insert(9, temp_df01["일강수량"].sum())
+
+                values_of_new_row = values_of_new_row + [
+                    daily_tp_range.mean(), daily_tp_range_over_10, typhoon_in_year, impact_typhoon_in_year]
+
+
+                # temp_df02['태풍'].mean(),
+                # temp_df02['일교차'].mean(),
+                # temp_df02['일교차 10 이상'].mean(),
+                # temp_df02['한파 일 수'].mean(),
+                # temp_df02['폭염 일 수'].mean()
 
                 new_row = {key: value for key, value in zip(datasets_columns, values_of_new_row)}
 
-                final_df = final_df.append(new_row, ignore_index=True)
+                final_df = pd.DataFrame.from_dict([new_row])
+                # final_df = final_df.append(new_row, ignore_index=True)
 
-        final_df.sort_values(by=["년도"], inplace=True)
-        final_df.to_csv(path_to_save + crop + "_dataset.csv", index=False, encoding="utf-8-sig")
-        # excel 파일에 이어서 저장
-        # df.to_csv(file_name, mode="a", header=False, index=False, encoding="utf-8-sig")
+                # excel 파일에 이어서 저장
+                final_df.to_csv(path_to_save + crop + "_dataset.csv", mode="a", header=False,
+                               index=False, encoding="utf-8-sig")
+
+
+# dataset 파일들 년도순을 정렬
+def sort_dataset_by_year(dir_path):
+    file_list = os.listdir(dir_path)
+
+    for file_name in file_list:
+        df = pd.read_csv(dir_path + file_name)
+        df.sort_values(by=["년도"], inplace=True)
+        df.to_csv(dir_path + file_name, index=False, encoding="utf-8-sig")
 
 
 if __name__ == "__main__":
-
     # 법정동코드에서 광역시도 코드만 정리하여 csv 파일롤 저장
     # save_sido_csv()
 
     scalers = ["default", "standard", "robust", "minmax"]
 
-    set_datasets()
+    # set_datasets()
+
+    sort_dataset_by_year("../datasets/종관기상관측/default/")
 
     # for scaler in scalers:
     #     preprocessing_datasets(scaler=scaler)
 
-        # temp_df["연월일"]
-        #
-        # for i, v in date_series.items():
-        #     print(i, type(v))
-        #
-        # print(pd.to_datetime(start_md))
-        # print(pd.to_datetime(end_md))
+    # temp_df["연월일"]
+    #
+    # for i, v in date_series.items():
+    #     print(i, type(v))
+    #
+    # print(pd.to_datetime(start_md))
+    # print(pd.to_datetime(end_md))
 
-        # print(pd.to_datetime(temp_df["연월일"])[7113])
-        # print(pd.to_datetime(temp_df["연월일"])[7113] + pd.to_timedelta("1 days"))
+    # print(pd.to_datetime(temp_df["연월일"])[7113])
+    # print(pd.to_datetime(temp_df["연월일"])[7113] + pd.to_timedelta("1 days"))
 
-        # year_list = list(set(temp_df["연월일"].str.split("-").str[0]))
-        #
-        # year_list.sort()
-        #
-        # print(year_list)
+    # year_list = list(set(temp_df["연월일"].str.split("-").str[0]))
+    #
+    # year_list.sort()
+    #
+    # print(year_list)
 
-        # for year in year_list:
-        #     print(year)
+    # for year in year_list:
+    #     print(year)
 
-        # '지역 이름', '년도', '일 최저기온', '일 평균기온', '일 최고기온', '일 평균풍속', '일 평균상대습도', '일 최저상대습도', '일 강수량', '일 누적일조시간', '한파 일 수', '폭염 일 수'
+    # '지역 이름', '년도', '일 최저기온', '일 평균기온', '일 최고기온', '일 평균풍속', '일 평균상대습도', '일 최저상대습도', '일 강수량', '일 누적일조시간', '한파 일 수', '폭염 일 수'
 
-        # values_of_new_row = [area, ]
-        #
-        # new_row = {key: value for key, value in zip(datasets_columns, values_of_new_row)}
-        #
-        # final_df.append(new_row, ignore_index=True)
-
-
-
+    # values_of_new_row = [area, ]
+    #
+    # new_row = {key: value for key, value in zip(datasets_columns, values_of_new_row)}
+    #
+    # final_df.append(new_row, ignore_index=True)
