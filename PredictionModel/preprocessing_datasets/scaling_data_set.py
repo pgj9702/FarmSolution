@@ -4,11 +4,37 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import RobustScaler
 
-def scaling_dataset(scaler="default"):
+def scaling_dataset(scaling="default"):
+    print(scaling)
 
     dir_path = "../datasets/종관기상관측/default/"
 
     file_list = os.listdir(dir_path)
+
+    scaling_list = ["standard", "robust", "minmax"]
+
+    path_to_save = "../datasets/종관기상관측/"
+
+    if scaling == "standard":
+        scaler = StandardScaler()
+        path_to_save = path_to_save + "standard/"
+
+    elif scaling == "robust":
+        scaler = RobustScaler()
+        path_to_save = path_to_save + "robust/"
+
+    elif scaling == "minmax":
+        scaler = MinMaxScaler()
+        path_to_save = path_to_save + "minmax/"
+
+    else:
+        return 0
+
+    try:
+        if not os.path.exists(path_to_save):
+            os.makedirs(path_to_save)
+    except OSError:
+        print('Error: Creating directory. ' + path_to_save)
 
     for file in file_list:
 
@@ -20,26 +46,19 @@ def scaling_dataset(scaler="default"):
 
         transform_df_columns = temp_df.columns
 
-        if scaler == "standard":
-            scaler = StandardScaler()
-
-        elif scaler == "robust":
-            scaler = RobustScaler()
-
-        elif scaler == "minmax":
-            scaler = MinMaxScaler()
-
-        else: return 0
-
         scaler.fit(temp_df)
 
         transform_df = pd.DataFrame(scaler.transform(temp_df), columns=transform_df_columns)
 
         dataset_df = pd.concat([dataset_df, transform_df], axis=1)
 
-        print(dataset_df)
+        file_name = file.split("d", maxsplit=1)[0]
 
+        print(file_name)
 
+        # print(dataset_df)
+
+        dataset_df.to_csv(path_to_save + file_name + scaling + "_dataset.csv", encoding="utf-8-sig")
 
 
 if __name__ == "__main__":
@@ -48,7 +67,7 @@ if __name__ == "__main__":
     scaler_list = ["minmax", "robust", "standard"]
 
     for scaler in scaler_list:
-        scaling_dataset(scaler=scaler)
+        scaling_dataset(scaling=scaler)
 
 
 
