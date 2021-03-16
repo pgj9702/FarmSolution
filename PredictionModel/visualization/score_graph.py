@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     for crop in crop_list:
 
-        path = "../datasets/"
+        path = "../datasets/종관기상관측/default/"
 
         X_train, X_test, y_train, y_test, min_max_scaler = get_train_test_datasets(path, crop, 2010, 2018)
 
