@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 # n_jobs : 계산에 사용할 작업 수
 
 # LinearRegression(fit_intercept, normalize, copy_X, n_jobs)
-def reg(X, y):
+def linear_reg(X, y):
 
     #LinearRegression model code
     linear_reg = LinearRegression()

@@ -57,7 +57,7 @@ if __name__ == "__main__":
             continue
             # print("null df")
 
-        # 전날과 앞날의 중간값으로 None 값 처리 (평균 기온, 최저 기온, 최고 기온)
+        # 보간법, 전날과 앞날의 중간값으로 None 값 처리 (평균 기온, 최저 기온, 최고 기온)
         weather_df["평균 기온"].interpolate(inplace=True)
         weather_df["최저 기온"].interpolate(inplace=True)
         weather_df["최고 기온"].interpolate(inplace=True)
