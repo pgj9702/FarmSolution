@@ -253,7 +253,7 @@ def set_datasets(scaler=None):
                 hw_section01 = daily_waether[(date_series >= start_ymd) &
                                           (date_series <= end_ymd)]["최고 기온"]
 
-                hw_section01_eve = daily_waether.iloc[hw_section01.index - 1]["최저 기온"]
+                hw_section01_eve = daily_waether.iloc[hw_section01.index - 1]["최고 기온"]
 
                 hw_section01.reset_index(inplace=True, drop=True)
                 hw_section01_eve.reset_index(inplace=True, drop=True)
@@ -299,7 +299,7 @@ def sort_dataset_by_year(dir_path):
 
     for file_name in file_list:
         df = pd.read_csv(dir_path + file_name)
-        df.sort_values(by=["년도"], inplace=True)
+        df.sort_values(by=["년도", "지역"], inplace=True)
         df.to_csv(dir_path + file_name, index=False, encoding="utf-8-sig")
 
 
@@ -307,6 +307,6 @@ if __name__ == "__main__":
 
     scalers = ["default", "standard", "robust", "minmax"]
 
-    # set_datasets()
+    set_datasets()
 
-    # sort_dataset_by_year("../datasets/종관기상관측/default/")
+    sort_dataset_by_year("../datasets/종관기상관측/default/")

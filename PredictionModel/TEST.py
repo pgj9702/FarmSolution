@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as dt
-from machine_learning.LinearRegression import reg
+from machine_learning.LinearRegression import linear_reg
 
 if __name__ == "__main__":
     train_set = pd.read_csv("datasets/농업주산지날씨/default/감귤_-_dataset.csv")
@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     print(X_train.shape, y_train.shape)
 
-    linear_regression = reg(X_train, y_train)
+    linear_regression = linear_reg(X_train, y_train)
 
     print("lr의 가중치(weight) : {}".format(linear_regression.coef_))
     print("lr의 편향(bias) : {}".format(linear_regression.intercept_))

@@ -10,7 +10,7 @@ from FarmSolution.PredictionModel.machine_learning.elasticnet import elastic_net
 from FarmSolution.PredictionModel.machine_learning.extratreesclassifier import extratreeclassifier
 from FarmSolution.PredictionModel.machine_learning.gradientboostingregressor import gradientboostingclassifier
 from FarmSolution.PredictionModel.machine_learning.Lasso import lasso
-from FarmSolution.PredictionModel.machine_learning.LinearRegression import reg
+from FarmSolution.PredictionModel.machine_learning.LinearRegression import linear_reg
 from FarmSolution.PredictionModel.machine_learning.linearsvr import linear_svr
 from FarmSolution.PredictionModel.machine_learning.RandomForestRegressor import random_forest
 from FarmSolution.PredictionModel.machine_learning.Ridge import ridge
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         # extratreeclassifier_model = extratreeclassifier(X_train, y_train)
         # gradientboostingclassifier_model = gradientboostingclassifier(X_train, y_train)
         lasso_model = lasso(X_train, y_train)
-        reg_model = reg(X_train, y_train)
+        reg_model = linear_reg(X_train, y_train)
         linear_svr_model = linear_svr(X_train, y_train)
         # random_forest_model = random_forest(X_train, y_train)
         ridge_model = ridge(X_train, y_train)
