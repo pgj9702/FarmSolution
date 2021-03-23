@@ -19,6 +19,9 @@ if __name__ == "__main__":
 
         input_file_name = "일기상자료_%s_2001_2019.csv" % station_name
 
+        if input_file_name == "일기상자료_북춘천_2001_2019.csv":
+            continue
+
         weather_df = pd.read_csv(input_file_path + input_file_name, low_memory=False)
 
         aver_temp = weather_df["일강수량"]
@@ -61,20 +64,20 @@ if __name__ == "__main__":
         print()
 
         # 지역별 누락 날짜 확인
-        # day_list = list(weather_df["시간"])
-        #
-        # day_list = [dt.datetime.strptime(day, "%Y-%m-%d") for day in day_list]
-        #
-        # print("day_list len :", len(day_list), day_list[0], "~", day_list[len(day_list) - 1])
-        #
-        # for idx in range(len(day_list) - 1):
-        #     if day_list[idx] == day_list[idx + 1]:
-        #         print("중복 발생", day_list[idx], day_list[idx + 1])
-        #         error_list.append({"발생일1": day_list[idx], "발생일2": day_list[idx + 1]})
-        #     elif day_list[idx] != day_list[idx + 1] - dt.timedelta(days=1) and \
-        #             day_list[idx] != day_list[idx + 1]:
-        #         print("누락 발생", day_list[idx], day_list[idx + 1])
-        #         error_list.append({"지점": station_name,"발생일1": day_list[idx], "발생일2": day_list[idx + 1]})
+        day_list = list(weather_df["시간"])
+
+        day_list = [dt.datetime.strptime(day, "%Y-%m-%d") for day in day_list]
+
+        print("day_list len :", len(day_list), day_list[0], "~", day_list[len(day_list) - 1])
+
+        for idx in range(len(day_list) - 1):
+            if day_list[idx] == day_list[idx + 1]:
+                print("중복 발생", day_list[idx], day_list[idx + 1])
+                error_list.append({"발생일1": day_list[idx], "발생일2": day_list[idx + 1]})
+            elif day_list[idx] != day_list[idx + 1] - dt.timedelta(days=1) and \
+                    day_list[idx] != day_list[idx + 1]:
+                print("누락 발생", day_list[idx], day_list[idx + 1])
+                error_list.append({"지점": station_name,"발생일1": day_list[idx], "발생일2": day_list[idx + 1]})
 
         print("종료")
 
