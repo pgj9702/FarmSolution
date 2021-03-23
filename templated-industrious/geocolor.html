@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>FarmSprings</title>
+    <meta charset="utf-8" />
+
+</head>
+    <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+    <script type='text/javascript'>google.load('visualization', '1', {'packages': ['geochart']});
+        google.setOnLoadCallback(drawVisualization);
+
+        function drawVisualization() {var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Country');
+            data.addColumn('number', 'Value');
+            data.addColumn({type:'string', role:'tooltip'});var ivalue = new Array();
+
+            data.addRows([[{v:'KR-11',f:'서울'},0,'Click to change background color']]);
+            // 클릭 후, 색 변환
+            ivalue['KR-11'] = '#3182BD';
+
+            data.addRows([[{v:'KR-26',f:'부산'},1,'Click to change background color']]);
+            ivalue['KR-26'] = '#3182BD';
+
+            data.addRows([[{v:'KR-27',f:'대구'},2,'Click to change background color']]);
+            ivalue['KR-27'] = '#3182BD';
+
+            data.addRows([[{v:'KR-30',f:'대전'},3,'Click to change background color']]);
+            ivalue['KR-30'] = '#3182BD';
+
+            data.addRows([[{v:'KR-29',f:'광주'},4,'Click to change background color']]);
+            ivalue['KR-29'] = '#3182BD';
+
+            data.addRows([[{v:'KR-28',f:'인천'},5,'Click to change background color']]);
+            ivalue['KR-28'] = '#3182BD';
+
+            data.addRows([[{v:'KR-31',f:'울산'},6,'Click to change background color']]);
+            ivalue['KR-31'] = '#3182BD';
+
+            data.addRows([[{v:'KR-43',f:'충청북도'},7,'Click to change background color']]);
+            ivalue['KR-43'] = '#3182BD';
+
+            data.addRows([[{v:'KR-44',f:'충청남도'},8,'Click to change background color']]);
+            ivalue['KR-44'] = '#3182BD';
+
+            data.addRows([[{v:'KR-42',f:'강원'},9,'Click to change background color']]);
+            ivalue['KR-42'] = '#9ECAE1';
+
+            data.addRows([[{v:'KR-41',f:'경기도'},10,'Click to change background color']]);
+            ivalue['KR-41'] = '#9ECAE1';
+
+            data.addRows([[{v:'KR-47',f:'경상북도'},11,'Click to change background color']]);
+            ivalue['KR-47'] = '#9ECAE1';
+
+            data.addRows([[{v:'KR-48',f:'경상남도'},12,'Click to change background color']]);
+            ivalue['KR-48'] = '#9ECAE1';
+
+            data.addRows([[{v:'KR-45',f:'전라북도'},13,'Click to change background color']]);
+            ivalue['KR-45'] = '#9ECAE1';
+
+            data.addRows([[{v:'KR-46',f:'전라남도'},14,'Click to change background color']]);
+            ivalue['KR-46'] = '#9ECAE1';
+
+            data.addRows([[{v:'KR-49',f:'제주'},15,'Click to change background color']]);
+            ivalue['KR-49'] = '#FFF783';
+
+            data.addRows([[{v:'KR-50',f:'세종'},16,'Click to change background color']]);
+            ivalue['KR-50'] = '#FFF783';
+
+        var options = {
+            backgroundColor: '#DFE3EE',
+            colorAxis:  {minValue: 0, maxValue: 21,  colors: ['#3182BD','#3182BD','#3182BD','#3182BD','#3182BD','#3182BD','#3182BD','#3182BD','#3182BD','#9ECAE1','#9ECAE1','#9ECAE1','#9ECAE1','#9ECAE1','#9ECAE1','#9ECAE1','#9ECAE1','#DEEBF7','#DEEBF7','#DEEBF7','#DEEBF7','#DEEBF7',]},
+            legend: 'none',
+            backgroundColor: '#DFE3EE',
+            datalessRegionColor: '#f5f5f5',
+            displayMode: 'regions',
+            enableRegionInteractivity: 'true',
+            resolution: 'provinces',
+            sizeAxis: {minValue: 1, maxValue:1,minSize:10,  maxSize: 10},
+            region:'KR',
+            keepAspectRatio: true,
+            width:600,
+            height:400,
+            tooltip: {textStyle: {color: '#444444'}, trigger:'focus'}
+            };
+        var chart = new google.visualization.GeoChart(document.getElementById('visualization'));
+        google.visualization.events.addListener(chart, 'select', function() {
+        var selection = chart.getSelection();
+        if (selection.length == 1) {
+            var selectedRow = selection[0].row;
+            var selectedRegion = data.getValue(selectedRow, 0);
+            if(ivalue[selectedRegion] != '') { document.getElementsByTagName('body')[0].style.background=ivalue[selectedRegion]; }
+            }
+        });
+        chart.draw(data, options);
+        }
+    </script>
+<div id='visualization'></div>
