@@ -210,72 +210,47 @@ def set_datasets(scaler=None):
                 # 1. 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하인 경우
                 # 2. 최저기온이 -12℃ 이하가 2일 이상 지속될 것으로 예상될 때
 
-                # 작년에 파종하여 올해 수확하는 경우
-                if start_ymd.year != end_ymd.year:
-                    cw_section01 = daily_waether[(date_series >= dt.date(start_ymd.year, 10, 1)) &
-                                  (date_series < dt.date(end_ymd.year, 5, 1))]["최저 기온"]
+                cw_section01 = daily_waether[(date_series >= dt.date(s_year, 1, 1)) &
+                                             (date_series < dt.date(s_year, 5, 1))]["최저 기온"]
 
-                    cw_section01 = cw_section01[cw_section01 <= 3.0]
+                cw_section01 = cw_section01[cw_section01 <= 3.0]
 
-                    cw_section01_eve = daily_waether.iloc[cw_section01.index - 1]["최저 기온"]
+                cw_section01_eve = daily_waether.iloc[cw_section01.index - 1]["최저 기온"]
 
-                    cw_section01.reset_index(inplace=True, drop=True)
-                    cw_section01_eve.reset_index(inplace=True, drop=True)
+                cw_section01.reset_index(inplace=True, drop=True)
+                cw_section01_eve.reset_index(inplace=True, drop=True)
 
-                    # 12도 이하가 2일 유지되거나 3도 이하이면서 전날보다 10도 이상 하강한 경우
-                    # 작년10월부터 올해4월까지
-                    cold_continuing01 = pd.DataFrame([cw_section01 <= -12.0, cw_section01_eve <= -12.0]).all()
+                cw_section02 = daily_waether[(date_series >= dt.date(s_year, 10, 1)) &
+                                             (date_series < dt.date(s_year + 1, 1, 1))]["최저 기온"]
 
-                    # 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하일 때
-                    # 두 조건 중 하나만 만족하는 날
-                    # 작년10월부터 올해4월까지
-                    section01_list = pd.DataFrame([cold_continuing01, (cw_section01 - cw_section01_eve <= -10.0)]).any()
+                cw_section02 = cw_section02[cw_section02 <= 3.0]
 
-                    # 한파 일수 cold_wave
-                    count_cold_wave = section01_list.sum()
+                cw_section02_eve = daily_waether.iloc[cw_section02.index - 1]["최저 기온"]
 
-                else:
-                    cw_section01 = daily_waether[(date_series >= dt.date(year, 1, 1)) &
-                                                 (date_series < dt.date(year, 5, 1))]["최저 기온"]
+                cw_section02.reset_index(inplace=True, drop=True)
+                cw_section02_eve.reset_index(inplace=True, drop=True)
 
-                    cw_section02 = daily_waether[(date_series >= dt.date(year, 10, 1)) &
-                                                 (date_series < dt.date(year + 1, 1, 1))]["최저 기온"]
+                # 12도 이하가 2일 유지되거나 3도 이하이면서 전날보다 10도 이상 하강한 경우
+                # 1월부터 4월까지
+                cold_continuing01 = pd.DataFrame([cw_section01 <= -12.0, cw_section01_eve <= -12.0]).all()
+                # 10월부터 12월까지
+                cold_continuing02 = pd.DataFrame([cw_section02 <= -12.0, cw_section02_eve <= -12.0]).all()
 
-                    cw_section01 = cw_section01[cw_section01 <= 3.0]
+                # 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하일 때
+                # 두 조건 중 하나만 만족하는 날
+                # 1월부터 4월까지
+                section01_list = pd.DataFrame([cold_continuing01, (cw_section01 - cw_section01_eve <= -10.0)]).any()
 
-                    cw_section01_eve = daily_waether.iloc[cw_section01.index - 1]["최저 기온"]
+                # 10월부터 12월까지
+                section02_list = pd.DataFrame([cold_continuing02, (cw_section02 - cw_section02_eve <= -10.0)]).any()
 
-                    cw_section01.reset_index(inplace=True, drop=True)
-                    cw_section01_eve.reset_index(inplace=True, drop=True)
-
-                    cw_section02 = cw_section02[cw_section02 <= 3.0]
-
-                    cw_section02_eve = daily_waether.iloc[cw_section02.index - 1]["최저 기온"]
-
-                    cw_section02.reset_index(inplace=True, drop=True)
-                    cw_section02_eve.reset_index(inplace=True, drop=True)
-
-                    # 12도 이하가 2일 유지되거나 3도 이하이면서 전날보다 10도 이상 하강한 경우
-                    # 1월부터 4월까지
-                    cold_continuing01 = pd.DataFrame([cw_section01 <= -12.0, cw_section01_eve <= -12.0]).all()
-                    # 10월부터 12월까지
-                    cold_continuing02 = pd.DataFrame([cw_section02 <= -12.0, cw_section02_eve <= -12.0]).all()
-
-                    # 최저기온이 전날보다 10℃ 이상 하강하여 3℃ 이하일 때
-                    # 두 조건 중 하나만 만족하는 날
-                    # 1월부터 4월까지
-                    section01_list = pd.DataFrame([cold_continuing01, (cw_section01 - cw_section01_eve <= -10.0)]).any()
-
-                    # 10월부터 12월까지
-                    section02_list = pd.DataFrame([cold_continuing02, (cw_section02 - cw_section02_eve <= -10.0)]).any()
-
-                    # 한파 일수 cold_wave
-                    count_cold_wave = section01_list.sum() + section02_list.sum()
+                # 한파 일수 cold_wave
+                count_cold_wave = section01_list.sum() + section02_list.sum()
 
                 # 폭염
                 # 최고기온이 33℃ 이상인 상태가 2일 이상 지속될 것으로 예상될 때
                 hw_section01 = daily_waether[(date_series >= start_ymd) &
-                                          (date_series <= end_ymd)]["최고 기온"]
+                                             (date_series <= end_ymd)]["최고 기온"]
 
                 hw_section01_eve = daily_waether.iloc[hw_section01.index - 1]["최고 기온"]
 
@@ -291,25 +266,11 @@ def set_datasets(scaler=None):
                 # 일교차가 15 도 이상인 날 수
                 daily_tp_range_over_10 = (daily_tp_range > 15).sum()
 
-                # 태풍
-                # 작년에 파종하여 올해 수확하는 경우
-                str_start_month = str(start_ymd.month)
-                str_end_month = str(end_ymd.month)
+                # 태풍 개수
+                typhoon_in_year = typhoon_df.loc[year, start_md[0]:end_md[0]].sum()
 
-                if start_ymd.month > end_ymd.month:
-                    # 태풍 개수
-                    typhoon_in_year = typhoon_df.loc[year-1, str_start_month:"12"].sum() + \
-                                      typhoon_df.loc[year, "1":str_end_month].sum()
-
-                    # 영향을 크게 미친 태풍 개수
-                    impact_typhoon_in_year = impact_typhoon_df.loc[year-1, str_start_month:"12"].sum() + \
-                                      impact_typhoon_df.loc[year, "1":str_end_month].sum()
-
-                else:
-                    # 태풍 개수
-                    typhoon_in_year = typhoon_df.loc[year, str_start_month:str_end_month].sum()
-                    # 영향을 크게 미친 태풍 개수
-                    impact_typhoon_in_year = impact_typhoon_df.loc[year, str_start_month:str_end_month].sum()
+                # 영향을 크게 미친 태풍 개수
+                impact_typhoon_in_year = impact_typhoon_df.loc[year, start_md[0]:end_md[0]].sum()
 
                 values_of_new_row = [sido, str_year, prod_of_sido_in_year, area_of_sido_in_year] + \
                                     [temp_df01[col].mean() for col in col_list_of_wth[1:]]
@@ -328,9 +289,9 @@ def set_datasets(scaler=None):
 
                 # excel 파일에 이어서 저장
                 final_df.to_csv(path_to_save + crop + "_dataset.csv", mode="a", header=False,
-                               index=False, encoding="utf-8-sig")
+                                index=False, encoding="utf-8-sig")
 
-#
+
 
 # dataset 파일들 년도순을 정렬
 def sort_dataset_by_year(dir_path):
@@ -343,7 +304,6 @@ def sort_dataset_by_year(dir_path):
 
 
 if __name__ == "__main__":
-
     scalers = ["default", "standard", "robust", "minmax"]
 
     set_datasets()
