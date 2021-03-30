@@ -1,4 +1,4 @@
-import models   # 작물 모델 import
+from . import models   # 작물 모델 import
 from django.core.management.base import BaseCommand
 import pymysql
 import pandas as pd
@@ -27,7 +27,6 @@ def predictive_modeling(datasets_dict: dict) -> dict:
 
         predictive_models[crop] = sklearn.linear_model.__dict__[models_by_crop[crop]["model"]](**models_by_crop[crop]["params"])
         print(sys.getsizeof(pickle.dumps(predictive_models[crop])))
-
 
     return predictive_models
     # elasticnet lasso reg linear_svr ridge sgdregressor svr
