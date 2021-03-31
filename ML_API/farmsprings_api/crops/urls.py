@@ -5,6 +5,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('intro/', views.intro, name='intro'),
     path('climate/', views.climate, name='climate'),
     path('prod_info/', views.prod_info, name='prod_info'),
     path('prod_change/', views.prod_change, name='prod_change'),

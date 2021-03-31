@@ -1,0 +1,28 @@
+crop,algorithm,dataset,start_year,scaler,params,score,segmentation
+감귤_-,lasso,1,2011,minmax,"{'alpha': 0.00125, 'max_iter': 10000}",0.9998274809825846,False
+감자_가을,linear_svr,1,2009,standard,"{'C': 5, 'intercept_scaling': 0.1, 'max_iter': 20000, 'tol': 0.001}",0.8341599973845479,True
+감자_고랭지,ridge,3,2012,minmax,"{'alpha': 0.01, 'max_iter': 10000}",0.9998894764030564,False
+감자_봄,elasticNet,1,2014,standard,"{'alpha': 0.01, 'l1_ratio': 0.5310526315789474, 'max_iter': 10000}",0.9826275343932817,True
+고추_-,svr,3,2011,standard,"{'C': 0.1, 'coef0': 10, 'degree': 3, 'gamma': 'scale', 'kernel': 'poly', 'max_iter': 100000}",0.9831399871140248,False
+단감_-,elasticNet,1,2016,robust,"{'alpha': 0.01, 'l1_ratio': 1.0, 'max_iter': 10000}",0.9891231365661498,False
+당근_-,svr,3,2016,robust,"{'C': 0.1, 'coef0': 10, 'degree': 3, 'gamma': 'scale', 'kernel': 'poly', 'max_iter': 100000}",0.99535941397569,False
+대파_-,svr,1,2009,robust,"{'C': 1, 'coef0': 0.5, 'degree': 3, 'gamma': 'auto', 'kernel': 'poly', 'max_iter': 100000}",0.9881967644466825,False
+땅콩_-,linear_svr,1,2010,robust,"{'C': 1, 'intercept_scaling': 0.5, 'max_iter': 20000, 'tol': 0.0005}",0.9466882626964727,True
+마늘_-,linear,1,2014,minmax,no params,0.9686236599963964,True
+무_가을,svr,3,2015,standard,"{'C': 1, 'coef0': 0.01, 'degree': 3, 'gamma': 'auto', 'kernel': 'linear', 'max_iter': 100000}",0.9979941449467041,True
+무_고랭지,svr,1,2013,standard,"{'C': 0.1, 'coef0': 0.01, 'degree': 3, 'gamma': 'auto', 'kernel': 'linear', 'max_iter': 100000}",0.998737478930344,True
+무_봄,ridge,1,2013,robust,"{'alpha': 1, 'max_iter': 10000}",0.9459522660255945,False
+배_-,svr,3,2014,standard,"{'C': 100, 'coef0': 0.01, 'degree': 3, 'gamma': 'auto', 'kernel': 'linear', 'max_iter': 100000}",0.9907831353591581,False
+배추_가을,elasticNet,1,2012,robust,"{'alpha': 0.01, 'l1_ratio': 0.4789473684210527, 'max_iter': 10000}",0.9860266092762248,False
+배추_겨울,lasso,1,2014,robust,"{'alpha': 0.001, 'max_iter': 10000}",0.9994309524428523,False
+배추_고랭지,linear_svr,2,2016,robust,"{'C': 1, 'intercept_scaling': 0.1, 'max_iter': 20000, 'tol': 0.001}",0.9990637178428906,True
+배추_봄,svr,3,2010,standard,"{'C': 100, 'coef0': 0.01, 'degree': 3, 'gamma': 'auto', 'kernel': 'linear', 'max_iter': 100000}",0.9831903143541452,True
+복숭아_-,lasso,3,2016,robust,"{'alpha': 0.03, 'max_iter': 10000}",0.9972898872054197,True
+사과_-,elasticNet,3,2015,robust,"{'alpha': 0.01, 'l1_ratio': 0.9478947368421053, 'max_iter': 10000}",0.9985020582803931,True
+생강_-,sgd,3,2012,minmax,"{'alpha': 0.01, 'learning_rate': 'optimal', 'loss': 'epsilon_insensitive', 'max_iter': 100000, 'penalty': 'l1'}",0.9616210285764699,False
+시금치_-,linear_svr,1,2015,minmax,"{'C': 1, 'intercept_scaling': 0.1, 'max_iter': 20000, 'tol': 0.0001}",0.9963872492823216,False
+양배추_-,linear,1,2016,minmax,no params,0.9775991231754598,True
+양파_-,sgd,3,2009,robust,"{'alpha': 0.01, 'learning_rate': 'constant', 'loss': 'epsilon_insensitive', 'max_iter': 100000, 'penalty': 'l1'}",0.9840487633098528,True
+쪽파_-,ridge,3,2014,standard,"{'alpha': 2, 'max_iter': 10000}",0.9881565786567332,True
+참깨_-,svr,1,2011,standard,"{'C': 0.1, 'coef0': 0.01, 'degree': 3, 'gamma': 'auto', 'kernel': 'linear', 'max_iter': 100000}",0.9769106570008774,True
+포도_-,sgd,3,2010,robust,"{'alpha': 0.01, 'learning_rate': 'optimal', 'loss': 'huber', 'max_iter': 100000, 'penalty': 'l1'}",0.9909845323352668,True

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	{% load static %}
+	<title>Predction</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="{% static 'crops/css/main.css' %}"/>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+	<a class="logo" href="../">FarmSprings</a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+	<ul class="links">
+		<li><a href="..">홈페이지</a></li>
+		<li><a href="../intro">소개</a></li>
+		<li><a href="../prod_change">농작물 생산량 흐름</a></li>
+		<li><a href="../prediction_prod">지역별 생산성 예측</a></li>
+		<li><a href="../prediction_crops_prod">작물별 생산성 예측</a></li>
+		<li><a href="../crops_trend">지역별 작물 트렌드</a></li>
+	</ul>
+</nav>
+
+
+
+<!-- Heading -->
+<div id="heading" >
+	<h1>농작물 생산성 예측</h1>
+</div>
+<!-- Main -->
+<section id="main" class="wrapper">
+	<div class="inner">
+
+		<!-- Form -->
+		<form method="post" action="{% url 'predict_crop' %}">
+			<!-- Elements -->
+			<div class="row">
+
+				<div class="col-6 col-12-large">
+
+					<!-- Text -->
+					<h3>2021년, 작물의 생산량을 예측합니다</h3>
+					<p>작물을 선택하세요</p>
+
+					<div class="row gtr-uniform">
+						<div class="col-6 col-12-xsmall">
+							<select name="option1" id="select1">
+								<option value="감귤">감귤</option>
+								<option value="가을 감자">가을 감자</option>
+								<option value="고랭지 감자">고랭지 감자</option>
+								<option value="봄 감자">봄 감자</option>
+								<option value="고추">고추</option>
+								<option value="단감">단감</option>
+								<option value="당근">당근</option>
+								<option value="대파">대파</option>
+								<option value="땅콩">땅콩</option>
+								<option value="마늘">마늘</option>
+								<option value="가을 무">가을 무</option>
+								<option value="고랭지 무">고랭지 무</option>
+								<option value="봄 무">봄 무</option>
+								<option value="배">배</option>
+								<option value="가을 배추">가을 배추</option>
+								<option value="겨울 배추">겨울 배추</option>
+								<option value="고랭지 배추">고랭지 배추</option>
+								<option value="봄 배추">봄 배추</option>
+								<option value="복숭아">복숭아</option>
+								<option value="사과">사과</option>
+								<option value="생강">생강</option>
+								<option value="시금치">시금치</option>
+								<option value="양배추">양배추</option>
+								<option value="양파">양파</option>
+								<option value="쪽파">쪽파</option>
+								<option value="참깨">참깨</option>
+								<option value="포도">포도</option>
+							</select>
+						</div>
+
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-xsmall">
+
+								<input type="submit" value="확인">
+							</div>
+						</div>
+						<!-- Scripts -->
+						<script src="{% static 'crops/js/jquery.min.js' %}"></script>
+						<script src="{% static 'crops/js/browser.min.js' %}"></script>
+						<script src="{% static 'crops/js/breakpoints.min.js' %}"></script>
+						<script src="{% static 'crops/js/util.js' %}"></script>
+						<script src="{% static 'crops/js/main.js' %}"></script>
+					</div>
+					<script>
+					</script>
+
+					<div id="container">
+						<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+						<script type="text/javascript">
+
+
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart1);
+// 파이 차트, 선택한 지역의 작물 비율
+
+      function drawChart1() {
+
+		var data = JSON.parse("{{ result|escapejs }}");
+
+
+        var data1 = new google.visualization.DataTable();
+
+        data1.addColumn('string', '지역');
+        data1.addColumn('number', '생산량(t)');
+
+		var array = []
+		for(var ele in data){
+			array.push([ele, data[ele]]);
+		}
+		data1.addRows(array);
+
+        var options1 = {
+          is3D: true,
+        };
+
+        var chart1 = new google.visualization.PieChart(document.getElementById('piechart_3d1'));
+        chart1.draw(data1, options1);
+      }
+
+    </script>
+    <div id="piechart_3d1" style="width: 1200px; height: 800px;"></div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+</body>
+</html>

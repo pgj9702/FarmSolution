@@ -27,6 +27,10 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+# intro.html, 페이지 소개
+def intro(request):
+    return render(request, 'intro.html')
+
 # climate.html, 기상정보
 def climate(request):
     return render(request, 'climate.html')
@@ -189,12 +193,17 @@ class Trend(views.APIView):
 
                 data[crop] = int(crops_prod)
 
+        data = sorted(data.items(), key=lambda x: x[1], reverse=True)
         print(data)
-        result = json.dumps(data)
+
+        new_data = dict()
+        for i in data:
+            new_data[i[0]] = i[1]
+
+        result = json.dumps(new_data)
         return render(request, "crops_trend.html", {'result': result})
 
 
-# Trend 지역별 생산량 정보
 class Change(views.APIView):
     @csrf_exempt
     def post(self, request):

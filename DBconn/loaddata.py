@@ -5,8 +5,8 @@ import os
 def insert_csv_to_db():
     # MySQL Connection 연결
     admin_conn = pymysql.connect(
-        user='admin',
-        password='bit1234',
+        user='root',
+        password='1234',
         host='127.0.0.1',
         db='cropsdb',
         charset='utf8'
@@ -56,8 +56,8 @@ def insert_csv_to_db():
 def insert_seg_csv_to_db():
     # MySQL Connection 연결
     admin_conn = pymysql.connect(
-        user='admin',
-        password='bit1234',
+        user='root',
+        password='1234',
         host='127.0.0.1',
         db='cropsdb',
         charset='utf8'
@@ -108,8 +108,8 @@ def insert_seg_csv_to_db():
 def insert_prod_area_to_db():
     # MySQL Connection 연결
     admin_conn = pymysql.connect(
-        user='admin',
-        password='bit1234',
+        user='root',
+        password='1234',
         host='127.0.0.1',
         db='cropsdb',
         charset='utf8'
@@ -174,8 +174,8 @@ def insert_prod_area_to_db():
     admin_conn.close()
 
 if __name__ == "__main__":
-    # insert_csv_to_db()
+    insert_csv_to_db()
 
     insert_seg_csv_to_db()
 
-    # insert_prod_area_to_db()
+    insert_prod_area_to_db()

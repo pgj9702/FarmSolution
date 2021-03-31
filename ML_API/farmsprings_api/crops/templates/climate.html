@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    {% load static %}
+    <title>Generic Page - Industrious by TEMPLATED</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="{% static 'crops/css/main.css' %}"/>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a class="logo" href="../">FarmSprings</a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+	<ul class="links">
+		<li><a href="..">홈페이지</a></li>
+		<li><a href="../climate">기상정보</a></li>
+		<li><a href="../prod_info">농작물 생산 정보</a></li>
+		<li><a href="../prod_change">농작물 생산량 변화</a></li>
+		<li><a href="../prediction_prod">지역별 생산성 예측</a></li>
+		<li><a href="../prediction_crops_prod">작물별 생산성 예측</a></li>
+		<li><a href="../crops_trend">지역별 작물 트렌드</a></li>
+	</ul>
+</nav>
+
+
+<!-- Heading -->
+<div id="heading" >
+    <h1>기상</h1>
+</div>
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="inner">
+
+        <!-- Elements -->
+        <div class="row">
+            <div class="col-6 col-12-medium">
+
+                <!-- Text -->
+                <h2>기상 정보 검색</h2>
+                <p>설명</p>
+
+                <!-- Form ction="{% url 'api_result' %}" -->
+                <form method="post" a>
+                    <div class="row gtr-uniform">
+                        <div class="col-6 col-12-xsmall">
+                            <select name="category" id="category">
+                                <optgroup label="지역 선택">
+                                    <option value="농작물1">농작물1</option>
+                                    <option value="농작물2">농작물2</option>
+                                    <option value="농작물3">농작물3</option>
+                                    <option value="농작물4">농작물4</option>
+                                    <option value="농작물5">농작물5</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="row gtr-uniform">
+                            <div class="col-6 col-12-xsmall">.
+                                <input type="submit" value="확인">
+                            </div>
+                        </div>
+
+                        <!-- Scripts -->
+                        <script src="{% static 'crops/js/jquery.min.js' %}"></script>
+                        <script src="{% static 'crops/js/browser.min.js' %}"></script>
+                        <script src="{% static 'crops/js/breakpoints.min.js' %}"></script>
+                        <script src="{% static 'crops/js/util.js' %}"></script>
+                        <script src="{% static 'crops/js/main.js' %}"></script>
+                    </div>
+                </form>
+
+                <div id="container">
+                    {% if result %}
+                    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+                    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                    <script>
+                        var data = JSON.parse("{{ result|escapejs }}");
+                        document.write(data);
+                    </script>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

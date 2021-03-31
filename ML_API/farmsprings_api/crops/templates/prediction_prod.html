@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	{% load static %}
+	<title>Predction</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="{% static 'crops/css/main.css' %}"/>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+	<a class="logo" href="../">FarmSprings</a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+	<ul class="links">
+		<li><a href="..">홈페이지</a></li>
+		<li><a href="../intro">소개</a></li>
+		<li><a href="../prod_change">농작물 생산량 흐름</a></li>
+		<li><a href="../prediction_prod">지역별 생산성 예측</a></li>
+		<li><a href="../prediction_crops_prod">작물별 생산성 예측</a></li>
+		<li><a href="../crops_trend">지역별 작물 트렌드</a></li>
+	</ul>
+</nav>
+
+
+
+<!-- Heading -->
+<div id="heading" >
+	<h1>농작물 생산성 예측</h1>
+</div>
+<!-- Main -->
+<section id="main" class="wrapper">
+	<div class="inner">
+
+		<!-- Form -->
+		<form method="post" action="{% url 'predict' %}">
+			<!-- Elements -->
+			<div class="row">
+
+				<div class="col-6 col-12-large">
+
+					<!-- Text -->
+					<h3>2021년, 각 지역의 생산량을 예측합니다</h3>
+					<p>지역을 선택하세요</p>
+
+					<div class="row gtr-uniform">
+						<div class="col-6 col-12-xsmall">
+							<select name="option1" id="select1">
+								<option value="전국">전국</option>
+								<option value="경기도">경기도</option>
+								<option value="강원도">강원도</option>
+								<option value="충청북도">충청북도</option>
+								<option value="충청남도">충청남도</option>
+								<option value="전라북도">전라북도</option>
+								<option value="전라남도">전라남도</option>
+								<option value="경상북도">경상북도</option>
+								<option value="경상남도">경상남도</option>
+								<option value="제주도">제주도</option>
+							</select>
+						</div>
+
+						<div class="row gtr-uniform">
+							<div class="col-6 col-12-xsmall">
+								<input type="submit" value="확인">
+							</div>
+						</div>
+						<!-- Scripts -->
+						<script src="{% static 'crops/js/jquery.min.js' %}"></script>
+						<script src="{% static 'crops/js/browser.min.js' %}"></script>
+						<script src="{% static 'crops/js/breakpoints.min.js' %}"></script>
+						<script src="{% static 'crops/js/util.js' %}"></script>
+						<script src="{% static 'crops/js/main.js' %}"></script>
+					</div>
+					<script>
+					</script>
+
+					<div id="container">
+						<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+						<script type="text/javascript">
+
+
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart1);
+// 파이 차트, 선택한 지역의 작물 비율
+
+      function drawChart1() {
+
+		var data = JSON.parse("{{ result|escapejs }}");
+
+        var data1 = new google.visualization.DataTable();
+
+        data1.addColumn('string', '작물');
+        data1.addColumn('number', '생산량(t)');
+
+		var array = []
+		for(var ele in data){
+			array.push([ele, data[ele]]);
+		}
+		data1.addRows(array);
+
+        var options1 = {
+          is3D: true,
+        };
+
+        var chart1 = new google.visualization.PieChart(document.getElementById('piechart_3d1'));
+        chart1.draw(data1, options1);
+      }
+
+    </script>
+    <div id="piechart_3d1" style="width: 1200px; height: 800px;"></div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+</body>
+</html>
