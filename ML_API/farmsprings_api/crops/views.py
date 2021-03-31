@@ -9,6 +9,7 @@ from django.template import loader
 from django.shortcuts import render
 import json
 
+import numpy as np
 import os
 import pickle
 import pandas as pd
@@ -66,7 +67,7 @@ def crops_trend(request):
 # crops_map 농작물 map input : 지역 + 작물, output : 지도 위 작물 생산량 (최근 5년)
 
 
-# prediction_prod 농작물 생산성 예측 input : 지역 + 면적, output : 생산량 + 작물 예측
+# prediction_prod 지역별 작물 예측
 class Predict(views.APIView):
     @csrf_exempt
     def post(self, request):
@@ -75,13 +76,15 @@ class Predict(views.APIView):
 
         local = request_dict['option1'][0]
 
-        predict_prod = CropsConfig.predict_prod
         predict_prod_per_area = CropsConfig.predict_prod_per_area
+
+        print("test" * 100)
+        print(predict_prod_per_area)
 
         crops_prod = dict()
         
         if local == "전국":
-            for crop, area_prod in predict_prod.items():
+            for crop, area_prod in predict_prod_per_area.items():
                 sum = 0
                 for value in area_prod.values():
                     if value > 0:
@@ -94,7 +97,8 @@ class Predict(views.APIView):
                     crop_name = crop_name[1] + " " + crop_name[0]
                 crops_prod[crop_name] = sum
         else:
-            for crop, area_prod in predict_prod.items():
+            for crop, area_prod in predict_prod_per_area.items():
+                print(crop, area_prod, type(area_prod))
                 if local in area_prod.keys():
                     if area_prod[local] > 0:
                         crop_name = crop.split("_")
@@ -135,7 +139,12 @@ class Predict_crop(views.APIView):
         else:
             crop = crop[0] + "_-"
 
-        predict_prod = CropsConfig.predict_prod
+        predict_prod = CropsConfig.predict_prod_per_area
+
+        print("test" * 10)
+        print(predict_prod)
+
+        print(predict_prod.keys())
 
         crops_prod = predict_prod[crop]
 
@@ -230,25 +239,32 @@ class Change(views.APIView):
                 table_data = getattr(models, table).objects.all().values()
                 table_df = pd.DataFrame(list(table_data))
 
-                for year in range(2001, 2021):
+                for year in range(2001, 2020):
 
-                    row = [year]
+                    row_list = [str(year)]
+                    print(row_list)
+
 
                     for local in ['경기도', '강원도', '충청북도', '충청남도', '전라북도', '전라남도', '경상북도', '경상남도', '제주도']:
+                        print(row_list)
                         value = table_df[(table_df["region"] == local) & (table_df["year"] == year)]["prod"]
                         print(value)
-                        if value.empty:
+                        if len(value) == 0:
                             value = 0
+                            print("test")
+                            print(row_list, type(row_list))
                         else:
-                            value = value[0]
+                            value = int(value.values[0])
+                            print("test")
+                            print(row_list, type(row_list))
 
-                        print(type(row))
-                        row = row.append(value)
+                        print(type(row_list))
+                        row_list = row_list + [value]
 
-                    data[year] = row
+                    data[year] = row_list
         print(data)
         result = json.dumps(data)
-        return render(request, "crops_change.html", {'result': result})
+        return render(request, "prod_change.html", {'result': result})
 
 
 

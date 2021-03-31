@@ -4,7 +4,7 @@
 <head>
     {% load static %}
     <title>ProdChange</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -25,7 +25,7 @@
 	<ul class="links">
 		<li><a href="..">홈페이지</a></li>
 		<li><a href="../intro">소개</a></li>
-		<li><a href="../prod_change">농작물 생산량 흐름</a></li>
+		<li><a href="../prod_change">농작물 생산 정보</a></li>
 		<li><a href="../prediction_prod">지역별 생산성 예측</a></li>
 		<li><a href="../prediction_crops_prod">작물별 생산성 예측</a></li>
 		<li><a href="../crops_trend">지역별 작물 트렌드</a></li>
@@ -35,11 +35,16 @@
 
 <!-- Heading -->
 <div id="heading" >
-    <h1>농작물 생산량 변화</h1>
+				<h1>농산물 생산 정보</h1>
 </div>
 <!-- Main -->
 <section id="main" class="wrapper">
     <div class="inner">
+						<header>
+							<h2>농작물별 생산 정보</h2>
+						</header>
+						<p>원하는 농작물의 선택을 통해, 농작물의 생산정보를 제공합니다. 통계청에서 제공된 과거 농작물 생산 데이터를 통해 한눈에 흐름을 볼수있도록 시각화한 자료입니다.</p>
+						<hr />
 
         <!-- Elements -->
         <div class="row">
@@ -47,7 +52,7 @@
             <div class="col-6 col-12-medium">
 
                 <!-- Text -->
-                <p>지역을 선택하세요</p>
+                <p>작물을 선택하세요</p>
 
                 <!-- Form -->
                 <form method="post" action="{% url 'change' %}">
@@ -95,7 +100,6 @@
                         <script src="{% static 'crops/js/util.js' %}"></script>
                         <script src="{% static 'crops/js/main.js' %}"></script>
                     </div>
-
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <script type="text/javascript">
       google.charts.load('current', {'packages':['line']});
@@ -107,7 +111,7 @@
 
         var data1 = new google.visualization.DataTable();
 
-        data1.addColumn('number', 'year');
+        data1.addColumn('string', 'year');
         data1.addColumn('number', '경기도');
         data1.addColumn('number', '강원도');
         data1.addColumn('number', '충청북도');
@@ -117,36 +121,17 @@
         data1.addColumn('number', '경상북도');
         data1.addColumn('number', '경상남도');
         data1.addColumn('number', '제주도');
-
+		    console.log(data);
 
 		var array = []
 		for(var ele in data){
-			array.push([ele, data[ele]]);
+			array.push(data[ele]);
+		    console.log(array);
 		}
+		console.log(array);
 
 		data1.addRows(array);
-
-      ["2001", 22, 281, 139, 176, 181, 78, 110, 0, 2199, 821, 1118, 2852, 1435, 1957, 1352, 1215, 233],
-      ["2002", 16, 228, 51, 128, 183, 83, 102, 0, 1640, 722, 776, 2209, 1340, 1576, 1033, 906, 300],
-      ["2003", 25, 210, 48, 142, 155, 91, 74, 0, 1798, 782, 1113, 2205, 1449, 1998, 1294, 918, 294],
-      ["2004", 36, 123, 95, 177, 186, 96, 86, 0, 1974, 745, 1597, 2541, 1649, 1802, 1420, 1168, 163],
-      ["2005", 26, 134, 71, 147, 142, 53, 70, 0, 1831, 633, 1180, 1712, 1212, 1472, 1097, 1023, 198],
-      ["2006", 30, 195, 87, 208, 128, 90, 109, 0, 2025, 867, 1531, 2302, 1750, 2070, 1642, 1247, 87],
-      ["2007", 21, 169, 91, 175, 113, 63, 141, 0, 1631, 714, 1090, 2008, 1380, 1677, 1542, 1116, 247],
-      ["2008", 53, 106, 112, 204, 126, 119, 143, 0, 1920, 817, 2005, 2143, 1585, 2184, 1817, 1066, 293],
-      ["2009", 17, 141, 136, 223, 101, 102, 129, 0, 2007, 918, 1629, 2114, 1531, 2353, 1821, 1027, 213],
-      ["2010", 8, 115, 129, 170, 58, 59, 148, 0, 1841, 800, 1401, 2058, 1485, 2552, 1458, 1082, 176],
-      ["2011", 15, 150, 125, 211, 95, 91, 172, 0, 2228, 1150, 2075, 2401, 1805, 3605, 1725, 1382, 96],
-      ["2012", 16, 106, 60, 159, 71, 76, 92, 0, 1873, 991, 1580, 1767, 1265, 2937, 1517, 839, 59],
-      ["2013", 11, 99, 81, 199, 125, 79, 175, 0, 1831, 1186, 1950, 1763, 1420, 3564, 1598, 994, 20],
-      ["2014", 10, 83, 82, 186, 102, 63, 106, 0, 1505, 1170, 1703, 1868, 1728, 4003, 1785, 784, 55],
-      ["2015", 7, 84, 51, 197, 78, 58, 101, 0, 1383, 960, 1402, 1426, 1586, 3349, 1431, 609, 2],
-      ["2016", 3, 41, 47, 119, 84, 45, 53, 47, 1280, 897, 1249, 1227, 1282, 3021, 1454, 578, 2],
-      ["2017", 5, 73, 84, 130, 87, 66, 88, 35, 1437, 1180, 1821, 1548, 1551, 2936, 2003, 629, 0],
-      ["2018", 5, 59, 65, 126, 50, 54, 100, 35, 1283, 1274, 1920, 1194, 1433, 3244, 1869, 546, 55],
-      ["2019", 3, 40, 44, 112, 41, 36, 58, 37, 1215, 1189, 1394, 919, 1086, 2666, 1660, 467, 0],
-      ["2020", 3, 48, 66, 117, 58, 43, 68, 36, 1211, 1520, 2002, 1275, 1526, 3349, 1946, 586, 0]
-     ]);
+		console.log(data1);
 
       var options = {
          hAxis: {
@@ -170,16 +155,62 @@
         }
       };
 
-      var chart = new google.charts.Line(document.getElementById('line_top_x'));
+      var chart = new google.charts.Line(document.getElementById('piechart_3d1'));
 
       chart.draw(data1, google.charts.Line.convertOptions(options));
     }
   </script>
     <div id="piechart_3d1" style="width: 1200px; height: 800px;"></div>
                 </form>
+
             </div>
+
+    <div class="inner">
+					<div class="content">
+						<hr />
+						<h3>생산 정보를 통해</h3>
+						<p>작물의 생산 정보를 통해, 올해 당신의 농지를 채워줄 작물의 가능성을 고려해 보세요.</p>
+                    </div>
+                    </div>
         </div>
     </div>
 </section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						<section>
+							<h3>농작물 솔루션 시스탬 FarmSprings</h3>
+							<p>각 지역의 농지들의 환경을 분석하고
+현 농지를 반영한 농작물 생산량 예측을 통해
+미래 지향형 농작물 정보를 구축하고 모니터링이 가능한 경작지 넓혀 가는 시작점입니다.
+미래 지향형 농작물 정보 플랫폼 구축은 생산자 뿐만 아니라 유통자 및 소비자에게 계획 및 계산 가능한 경작지 확보는 물론,
+현재 우리나라, 어느 지역에서, 어떤 작물이, 얼만큼 생산되고 있는지를 생생하게 전달합니다.</p>
+						</section>
+						<section>
+							<h4>Team member</h4>
+							<ul class="alt">
+								<li><a href="#">강수석</a></li>
+								<li><a href="#">김유정</a></li>
+								<li><a href="#">박경준</a></li>
+								<li><a> FarmSprings</a></li>
+							</ul>
+						</section>
+						<section>
+							<h4>Contact</h4>
+							<ul class="plain">
+								<li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; FarmSprings, Solution <a href="https://coverr.co">system</a>.
+					</div>
+				</div>
+			</footer>
 </body>
 </html>
