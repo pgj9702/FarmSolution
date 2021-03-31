@@ -1,6 +1,7 @@
 import pymysql
 import pandas as pd
 import os
+import Mysql_settings
 
 def insert_csv_to_db():
     # MySQL Connection 연결
