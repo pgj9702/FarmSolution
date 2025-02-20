@@ -1,10 +1,10 @@
-# from numpy import nan as NA
-# import pandas as pd
-# import numpy as np
+from numpy import nan as NA
+import pandas as pd
+import numpy as np
 import urllib
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode, quote_plus, unquote
-# import pandas as pd
+import pandas as pd
 import xml.etree.ElementTree as ET
 import json
 import requests
@@ -43,26 +43,13 @@ def web_request(method_name, url, dict_data, is_urlencoded=True):
 # root = tree.getroot()  # 최상위 노드 root
 
 # POST방식 호출 테스트('Content-Type': 'application/x-www-form-urlencoded')
-url  = 'http://192.168.2.100:8070/NascaPhone/API/smssend.php' # 접속할 사이트주소 또는 IP주소를 입력한다
+url  = 'http://127.0.0.1:8000/crops/predict/' # 접속할 사이트주소 또는 IP주소를 입력한다
+data = {'uid': 'good'}          # 요청할 데이터
+response = web_request(method_name='POST', url=url, dict_data=data, is_urlencoded=True)
 
-
-
-data = {
- "PHONE": "01088846086",
- "MSG": "비트테스트입니다",
- "DNIS": "01099999999",
- "REVDATE": "",
- "UID": "CA01",
- "UNAME": "비트",
- "PID": "25-00007",
- "PNAME": "비트@"
-}              # 요청할 데이터
-response = web_request(method_name='POST', url=url, dict_data=data, is_urlencoded=False)
-
-
-# if response['ok'] == True:
-#     print(response['prediction'])
-#     성공 응답 시 액션
-# else:
-#     pass
+if response['ok'] == True:
+    print(response['prediction'])
+    # 성공 응답 시 액션
+else:
+    pass
     # 실패 응답 시 액션
